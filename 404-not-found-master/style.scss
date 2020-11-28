@@ -1,0 +1,206 @@
+$heading-font: 'Inconsolata', monospace;
+$main-font: 'Space mono', monospace;
+$footer-font: 'Montserrat', sans-serif;
+
+
+
+        
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+a {
+    text-decoration: none; // resets default appearance of <a>
+}
+
+html {
+    display: flex;
+}
+
+
+body {
+    max-width: 600px;
+    height: 100vh;
+    margin: 0 auto;
+    padding: 20px 24px;
+
+    display: flex;
+    flex-direction: column;
+}
+
+
+    header {
+        font: 700 1.5rem $heading-font; /* 24px */
+        letter-spacing: -0.08em;
+        color: #333333;
+        text-transform: uppercase;
+    }
+
+
+
+    main {
+        display: flex;
+        flex-direction: column;
+
+        margin-top: 60px;
+    }
+
+        .image-scarecrow {
+            width: 90%;
+
+            align-self: center;
+        }
+
+
+
+        .error-heading {
+            font: 700 3rem $main-font; /* 48px */
+            letter-spacing: -0.035em; /* inherits font-size from itself */
+            color: #333333;
+            
+            margin-top: 60px;
+            margin-right: -10px;
+        }
+    
+        .error-message {
+            font: 400 1.125rem/150% $main-font; /* 18px */
+            letter-spacing: -0.035em;
+            color: #4F4F4F;
+            
+            margin-top: 25px;
+        }
+        
+        .back-link {
+            display: inline-block; /* so all of the stylings take effect on items nearby */
+
+            font: 700 0.875rem/4rem $main-font; /* 14px */
+            letter-spacing: -0.035em;
+            color: white;
+            background-color: #333333;
+            text-transform: uppercase;
+            text-align: center;
+            border: 2px solid #333333;
+            
+            padding: 0 41px;
+            margin-top: 60px;
+            align-self: flex-start;
+
+            transition: color .2s, background-color .2s;
+        }
+        
+            .back-link:hover {
+                color: #333333;
+                background-color:white;
+            }
+
+            button:focus,
+            a:focus {
+                outline: 2px solid #FF6D5B;
+                outline-offset: 1px;
+            }
+
+
+    footer {
+        font: .875rem $footer-font; /* 14px */
+        letter-spacing: -0.035em;
+        text-align: center;
+
+        margin-top: auto;
+        padding-bottom: 40px;
+    }
+
+        .footer {
+            margin-top: 100px;
+
+            a {
+               color: inherit;
+           }
+        }
+
+
+    // IE11 fixes
+
+        body {
+            min-width: 250px; /* fix for IE11 image resizing when vw < max-width. anything >= 1px */
+        }
+        
+        /* when flex items, they both have inappropriate stretching behavior */
+        main,
+        .image-scarecrow {
+            flex-shrink: 0; /* https://github.com/philipwalton/flexbugs/issues/233 */
+        }
+
+
+
+
+
+@media screen and (min-width: 1024px) and (orientation: landscape) /* 1024 and landscape optimize view on ipad pro */ {
+    
+    /* BASIC LAYOUT */
+    body {
+        width: 90%;
+        max-width: 1300px;
+
+        margin: 0 auto;
+        padding: 0px;
+    }
+
+        header {
+            margin-top: 40px;
+        }
+
+        main {
+            margin: auto;
+            padding: 50px 0;
+            
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            grid-template-rows: auto 1fr auto;
+            column-gap: 40px;
+        }
+
+            .image-scarecrow {
+                width: 540px;
+                
+                grid-column: 1;
+                grid-row: 1 / 4;
+            }
+            
+            .error-heading {
+                grid-column: 2;
+                grid-row: 1;
+
+                margin-top: 0px;
+
+                font-size: 4rem; /* 64px */
+                line-height: 150%
+            }
+
+            .error-message {
+                max-width: 380px;
+                
+                grid-column: 2;
+                grid-row: 2;
+                
+                font-size: 1.5rem; /* 24px */
+
+                margin-top: 0px;
+                margin-bottom: 30px;
+                align-self: center; /* grid track take all the available space because of 'auto' */
+            }
+
+            .back-link {
+                grid-column: 2;
+                grid-row: 3;
+
+                margin-top: 0px;
+                align-self: end;
+                justify-self: start; /* sets innitial dimensions on the item https://css-tricks.com/grid-areas-element-occupies-arent-necessarily-size/ */
+            }
+
+        footer {
+            margin-top: 0px;
+        }
+}
