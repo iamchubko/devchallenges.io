@@ -1,0 +1,555 @@
+* {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  height: 100%;
+  padding: 0 12px;
+}
+
+a {
+  text-decoration: none;
+  color: white;
+  position: relative;
+}
+
+a:before {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background-color: white;
+  -webkit-transform-origin: bottom right;
+          transform-origin: bottom right;
+  -webkit-transform: scaleX(0);
+          transform: scaleX(0);
+  -webkit-transition: -webkit-transform .2s ease;
+  transition: -webkit-transform .2s ease;
+  transition: transform .2s ease;
+  transition: transform .2s ease, -webkit-transform .2s ease;
+}
+
+a:hover:before {
+  -webkit-transform-origin: bottom left;
+          transform-origin: bottom left;
+  -webkit-transform: scaleX(1);
+          transform: scaleX(1);
+}
+
+body {
+  height: inherit;
+  margin: 0 auto;
+  padding-top: 19px;
+  max-width: 700px;
+  background-color: #181719;
+  color: white;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+/* HEADER */
+header {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.logo {
+  font: 200 0.875rem 'Crimson Pro', serif;
+  text-transform: uppercase;
+  padding: 7px 11px;
+  display: inline-block;
+  border: 1px solid white;
+  cursor: default;
+}
+
+label {
+  margin-left: auto;
+}
+
+/* ---------------------- */
+/* BURGER MENU */
+input {
+  /* hidden checkbox */
+  display: none;
+}
+
+label {
+  /* button */
+  position: fixed;
+  /* always on the screen */
+  top: 20px;
+  right: 12px;
+  height: 28px;
+  width: 28px;
+  z-index: 5;
+}
+
+label span {
+  /* three strips forming the 'burger button' */
+  position: absolute;
+  width: 100%;
+  height: 3px;
+  top: 12.5px;
+  display: block;
+  background: white;
+  -webkit-transition-property: top, width, -webkit-transform;
+  transition-property: top, width, -webkit-transform;
+  transition-property: top, transform, width;
+  transition-property: top, transform, width, -webkit-transform;
+  -webkit-transition-duration: .3s;
+          transition-duration: .3s;
+}
+
+label span:first-child {
+  top: 5px;
+  -webkit-transform-origin: 4px 6px;
+          transform-origin: 4px 6px;
+}
+
+label span:last-child {
+  top: 20px;
+  -webkit-transform-origin: 15px 15px;
+          transform-origin: 15px 15px;
+}
+
+label:hover {
+  cursor: pointer;
+}
+
+label:focus {
+  outline-offset: 3px;
+}
+
+input:checked + label span:first-child {
+  width: 50%;
+  -webkit-transform: rotate(45deg);
+          transform: rotate(45deg);
+}
+
+input:checked + label span:nth-of-type(2) {
+  -webkit-transform: rotate(-45deg);
+          transform: rotate(-45deg);
+}
+
+input:checked + label span:last-child {
+  width: 50%;
+  -webkit-transform: rotate(45deg);
+          transform: rotate(45deg);
+}
+
+input ~ nav {
+  background: #181719;
+  position: fixed;
+  top: 0px;
+  left: 0;
+  /* fixes two strange dots when menu is open */
+  width: 0;
+  height: 100%;
+  z-index: 3;
+  -webkit-transition: width .3s .3s;
+  transition: width .3s .3s;
+  overflow: hidden;
+  /* somehow fixes bug with menu items when triggering media queries */
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+input ~ nav ul.menu {
+  font: 500 1.125rem 'Montserrat', sans-serif;
+  text-align: center;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-rows: (1fr)[4];
+      grid-template-rows: repeat(4, 1fr);
+  row-gap: 32px;
+}
+
+input ~ nav ul.menu li {
+  opacity: 0;
+  -webkit-transition: opacity .3s 0s;
+  transition: opacity .3s 0s;
+  list-style: none;
+}
+
+input ~ nav ul.menu li:first-child {
+  margin-top: 0;
+  font-weight: bold;
+}
+
+input:checked ~ nav {
+  width: 100%;
+  -webkit-transition-delay: 0s;
+          transition-delay: 0s;
+}
+
+input:checked ~ nav ul.menu li {
+  opacity: 1;
+  -webkit-transition-delay: .3s;
+          transition-delay: .3s;
+}
+
+/* using js, hide menu so tab key won't focus on them when they invisible */
+.hidden {
+  display: none;
+}
+
+.overflow {
+  overflow-y: hidden;
+}
+
+/* ------------------ */
+main h1 {
+  font: 2.25rem 'Lora', serif;
+  margin-top: 38px;
+}
+
+main > p {
+  font: 300 0.875rem 'Montserrat', sans-serif;
+  width: 75%;
+  margin-top: 25px;
+}
+
+main .read-more {
+  font: 600 0.875rem 'Montserrat', sans-serif;
+  display: inline-block;
+  margin-top: 25px;
+  padding-right: 20px;
+}
+
+main .read-more > .material-icons {
+  font-size: 1.125rem;
+  position: relative;
+  top: 4px;
+  left: 12px;
+}
+
+.read-more:before {
+  right: 42px;
+}
+
+.container {
+  position: relative;
+  margin: 37px 0 150px;
+}
+
+.photo-interior {
+  max-width: 100%;
+}
+
+.photo-interior,
+.card {
+  -webkit-transition: -webkit-transform 0.4s;
+  transition: -webkit-transform 0.4s;
+  transition: transform 0.4s;
+  transition: transform 0.4s, -webkit-transform 0.4s;
+}
+
+.photo-interior:hover,
+.photo-interior:focus {
+  -webkit-transform: scale(1.02);
+          transform: scale(1.02);
+  -webkit-transition: -webkit-transform 0.5s;
+  transition: -webkit-transform 0.5s;
+  transition: transform 0.5s;
+  transition: transform 0.5s, -webkit-transform 0.5s;
+  outline: none;
+}
+
+.photo-interior:hover ~ .card,
+.photo-interior:focus ~ .card {
+  -webkit-transform: translate(0px, 58px);
+          transform: translate(0px, 58px);
+  -webkit-transition: -webkit-transform 0.4s;
+  transition: -webkit-transform 0.4s;
+  transition: transform 0.4s;
+  transition: transform 0.4s, -webkit-transform 0.4s;
+}
+
+/* ------------ */
+.card {
+  position: absolute;
+  bottom: -84px;
+  right: 10px;
+  max-width: 300px;
+  height: 138px;
+  margin-left: 35px;
+  padding: 13px 22px 25px;
+  background: #181719;
+  -webkit-box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+          box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: min-content 60%;
+      grid-template-columns: -webkit-min-content 60%;
+      grid-template-columns: min-content 60%;
+  -ms-grid-rows: max-content max-content auto;
+      grid-template-rows: -webkit-max-content -webkit-max-content auto;
+      grid-template-rows: max-content max-content auto;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-column-gap: 14px;
+          column-gap: 14px;
+}
+
+.card img {
+  -ms-grid-column: 1;
+  grid-column: 1;
+  -ms-grid-row: 1;
+  -ms-grid-row-span: 2;
+  grid-row: 1/3;
+  width: 37px;
+  border-radius: 999px;
+}
+
+.card p:nth-child(2) {
+  -ms-grid-column: 2;
+  grid-column: 2;
+  -ms-grid-row: 1;
+  grid-row: 1;
+  font: 500 0.75rem 'Montserrat', sans-serif;
+}
+
+.card p:nth-child(3) {
+  -ms-grid-column: 2;
+  grid-column: 2;
+  -ms-grid-row: 2;
+  grid-row: 2;
+  font: 500 0.625rem 'Montserrat', sans-serif;
+  color: #828282;
+}
+
+.card p:nth-child(4) {
+  -ms-grid-column: 1;
+  -ms-grid-column-span: 2;
+  grid-column: 1/3;
+  -ms-grid-row: 3;
+  grid-row: 3;
+  -ms-flex-item-align: end;
+      -ms-grid-row-align: end;
+      align-self: end;
+  font: bold 1.125rem 'Lora', sans-serif;
+}
+
+footer {
+  margin-top: auto;
+  padding: 50px 0 24px;
+}
+
+.line {
+  border-bottom: 1px solid #A9A9A9;
+  width: 261px;
+  margin: 0 auto 10px;
+}
+
+.footer {
+  font: 600 .875rem 'Montserrat', sans-serif;
+  color: #A9A9A9;
+  letter-spacing: -0.035em;
+  text-align: center;
+}
+
+.footer a {
+  color: inherit;
+  -webkit-transition: color .2s;
+  transition: color .2s;
+}
+
+.footer a:hover {
+  color: white;
+}
+
+@media screen and (min-width: 700px) {
+  /* to fix burger button relative to the body but now scrolls with the whole page */
+  label {
+    position: relative;
+    top: 1px;
+    right: 0px;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  html {
+    padding: 0 40px;
+  }
+  body {
+    padding-top: 42px;
+    max-width: 1250px;
+  }
+  header {
+    margin-bottom: 130px;
+  }
+  label {
+    display: none;
+    /* hide burger button */
+  }
+  input ~ nav {
+    all: unset;
+  }
+  input ~ nav ul.menu {
+    all: unset;
+  }
+  input ~ nav ul.menu li {
+    all: unset;
+  }
+  /* ----------------------- */
+  .hidden {
+    display: initial;
+  }
+  header {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+  }
+  header nav {
+    -webkit-box-flex: 0;
+        -ms-flex: 0 1 535px;
+            flex: 0 1 535px;
+    -ms-flex-item-align: center;
+        -ms-grid-row-align: center;
+        align-self: center;
+    /* center itself vertically according to logo */
+    margin-left: auto;
+    /* put itself at the right side of the flex container */
+  }
+  header nav ul.menu {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
+    font: 500 1.125rem 'Montserrat', sans-serif;
+    color: white;
+  }
+  main > p,
+  main > h1 {
+    margin: 0;
+  }
+  main {
+    display: -ms-grid;
+    display: grid;
+    -ms-grid-columns: 39% 59%;
+        grid-template-columns: 39% 59%;
+    -ms-grid-rows: auto auto 1fr;
+        grid-template-rows: auto auto 1fr;
+    -webkit-column-gap: 2%;
+            column-gap: 2%;
+    row-gap: 40px;
+    margin: auto 0;
+  }
+  main > h1 {
+    font-size: 3rem;
+    -ms-grid-column: 1;
+    grid-column: 1;
+    -ms-grid-row: 1;
+    grid-row: 1;
+  }
+  main > p {
+    font-size: 1.5rem;
+    width: unset;
+    margin-right: 50px;
+    -ms-grid-column: 1;
+    grid-column: 1;
+    -ms-grid-row: 2;
+    grid-row: 2;
+  }
+  main > .read-more {
+    font-size: 1.125rem;
+    -ms-grid-column: 1;
+    grid-column: 1;
+    -ms-grid-row: 3;
+    grid-row: 3;
+    -ms-flex-item-align: start;
+        align-self: flex-start;
+    justify-self: flex-start;
+    /* fixes big horizontal box on focus */
+    margin-top: 8px;
+  }
+  .container {
+    margin: 0px;
+    /* resetting value */
+    -ms-grid-column: 2;
+    grid-column: 2;
+    -ms-grid-row: 1;
+    -ms-grid-row-span: 3;
+    grid-row: 1/4;
+  }
+  .photo-interior,
+  .card {
+    -webkit-transition: -webkit-transform 0.4s;
+    transition: -webkit-transform 0.4s;
+    transition: transform 0.4s;
+    transition: transform 0.4s, -webkit-transform 0.4s;
+  }
+  .photo-interior:hover,
+  .photo-interior:focus {
+    -webkit-transform: scale(1.1);
+            transform: scale(1.1);
+    -webkit-transition: -webkit-transform 0.5s;
+    transition: -webkit-transform 0.5s;
+    transition: transform 0.5s;
+    transition: transform 0.5s, -webkit-transform 0.5s;
+  }
+  .photo-interior:hover ~ .card,
+  .photo-interior:focus ~ .card {
+    -webkit-transform: translate(40px, 106px);
+            transform: translate(40px, 106px);
+    -webkit-transition: -webkit-transform 0.4s;
+    transition: -webkit-transform 0.4s;
+    transition: transform 0.4s;
+    transition: transform 0.4s, -webkit-transform 0.4s;
+  }
+  /* ------------------- */
+  .card {
+    max-width: 410px;
+    height: 189px;
+    -webkit-column-gap: 19px;
+            column-gap: 19px;
+    right: 32px;
+    bottom: -107px;
+    padding-top: 18px;
+    padding-bottom: 35px;
+    -webkit-box-shadow: none;
+            box-shadow: none;
+  }
+  .card img {
+    width: 50px;
+    margin-left: 5px;
+  }
+  .card p:nth-child(2) {
+    font-size: 0.875rem;
+  }
+  .card p:nth-child(3) {
+    font-size: 0.75rem;
+  }
+  .card p:nth-child(4) {
+    font-size: 1.5rem;
+  }
+  footer {
+    padding: 150px 0 46px;
+  }
+  .line {
+    display: none;
+  }
+}
+/*# sourceMappingURL=style.css.map */
