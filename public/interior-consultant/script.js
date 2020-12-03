@@ -1,71 +1,97 @@
 const checkbox = document.getElementById('burger');
-const navBar = document.querySelector('nav');
 const body = document.querySelector('body');
 const button = document.querySelector('label');
-const main = document.querySelector('main');
-const footer = document.querySelector('footer');
 
 console.log('script is running');
 
+// veriables for the main layer
+const readMore = document.querySelector('.read-more');
+const image = document.querySelector('.photo-interior');
 
-function hideMainPage() {
-    main.classList.add('hidden');
-    footer.classList.add('hidden');
+const tabMain = [readMore, image];
+const tabFooter = document.querySelectorAll('.footer a');
+
+
+// variable for the menu layer
+const menuLinks = document.querySelectorAll('.menu li a');
+
+
+
+
+// FUNCTIONS
+function noTabMain() {
+    for (let i=0; i < 2; i++) {
+        tabMain[i].setAttribute('tabindex', '-1');
+        tabFooter[i].setAttribute('tabindex', '-1');
+    }
 }
 
-function unhideMainPage() {
-    main.classList.remove('hidden');
-    footer.classList.remove('hidden');
+function yesTabMain() {
+    for (let i=0; i < 2; i++) {
+        tabMain[i].setAttribute('tabindex', '0');
+        tabFooter[i].setAttribute('tabindex', '0');
+    }
 }
 
-function menuOpen() {
-    navBar.classList.remove('hidden');
-    body.classList.add('overflow');
+function noTabMenu() {
+    for (let i=0; i < 4; i++) {
+        menuLinks[i].setAttribute('tabindex', '-1');
+    }
 }
 
-function menuClosed() {
-    navBar.classList.add('hidden');
-    body.classList.remove('overflow');
+function yesTabMenu() {
+    for (let i=0; i < 4; i++) {
+        menuLinks[i].setAttribute('tabindex', '0');
+    }
 }
 
+
+
+// eventListeners 
 
 window.onload = function() {
-    if(checkbox.checked && window.innerWidth <= 1024) {
-        menuOpen();
-        hideMainPage();
-
-        console.log('page is refreshed and menu is still open');
-    } else if (window.innerWidth <= 1024) {
-        navBar.classList.add('hidden');
+    if(checkbox.checked && window.innerWidth < 1024) {
+        noTabMain();
+        body.classList.add('overflow');
+        
+        console.log('on page load width is <1024 and menu is open');
+    } else if (!checkbox.cheked && window.innerWidth < 1024) {
+        noTabMenu();
 
         console.log('on page load width is <1024 and menu is closed');
     }
 }
 
+
 button.addEventListener('click', function() {
     if (checkbox.checked) {
-        unhideMainPage();
-        let work = setTimeout(menuClosed, 600);
+        yesTabMain();
+        body.classList.remove('overflow');
+        noTabMenu();
         
         console.log('menu is closed');
     } else {
-        menuOpen();
-        let hideMain = setTimeout(hideMainPage, 600);
-
+        noTabMain();
+        body.classList.add('overflow');
+        yesTabMenu();
+        
         console.log('menu is open');
     }
 });
 
-window.addEventListener('resize', function() {
-    if (window.innerWidth <= 1024 && checkbox.checked) {
-        menuOpen();
-        hideMainPage();        
 
-        console.log('window size is <1024px and menu is still open')
-    } else {
-        menuClosed();
-        unhideMainPage();
+window.addEventListener('resize', function() {
+    if (window.innerWidth < 1024 && checkbox.checked) {
+        noTabMain();
+        body.classList.add('overflow');
+        yesTabMenu();        
         
-        console.log('window size is >1024px and menu is still open')
+        console.log('menu is open and window size is <1024px wide');
+    } else if (window.innerWidth >= 1024 && checkbox.checked) {
+        yesTabMain();
+        body.classList.remove('overflow');
+        yesTabMenu();
+        
+        console.log('menu is open and window size is >=1024px wide');
     }
 });

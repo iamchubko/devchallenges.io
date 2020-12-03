@@ -207,11 +207,7 @@ input:checked ~ nav ul.menu li {
           transition-delay: .3s;
 }
 
-/* using js, hide menu so tab key won't focus on them when they invisible */
-.hidden {
-  display: none;
-}
-
+/* using js, hide overflow on body so no scroll is allowed */
 .overflow {
   overflow-y: hidden;
 }
@@ -412,9 +408,6 @@ footer {
     all: unset;
   }
   /* ----------------------- */
-  .hidden {
-    display: initial;
-  }
   header {
     display: -webkit-box;
     display: -ms-flexbox;
