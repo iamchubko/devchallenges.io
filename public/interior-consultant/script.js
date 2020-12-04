@@ -86,12 +86,18 @@ window.addEventListener('resize', function() {
         body.classList.add('overflow');
         yesTabMenu();        
         
-        console.log('menu is open and window size is <1024px wide');
-    } else {
+        console.log('menu is open and viewport is <1024px wide');
+    } else if (window.innerWidth >= 1024) {
         yesTabMain();
         body.classList.remove('overflow');
         yesTabMenu();
         
-        console.log('menu is open and window size is >=1024px wide');
+        console.log('viewport is >=1024px wide');
+    } else {
+        yesTabMain();
+        body.classList.remove('overflow');
+        noTabMenu();
+        
+        console.log('viewport is <1024px wide');
     }
 });
