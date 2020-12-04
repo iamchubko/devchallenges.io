@@ -87,7 +87,7 @@ window.addEventListener('resize', function() {
         yesTabMenu();        
         
         console.log('menu is open and window size is <1024px wide');
-    } else if (window.innerWidth >= 1024 && checkbox.checked) {
+    } else {
         yesTabMain();
         body.classList.remove('overflow');
         yesTabMenu();
