@@ -1,0 +1,418 @@
+$montserrat: 'Montserrat', sans-serif;
+$playfair: 'Playfair Display', serif;
+
+
+
+*,
+*::after,
+*::before {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+a {
+    text-decoration: none;
+    outline-color: #f2994a;
+    outline-offset: 3px;
+
+    transition: color .2s;
+}
+
+img {
+    max-width: 100%;
+}
+
+
+
+
+html {
+    padding: 0 11px;
+}
+
+body {
+    background-color: #fafafa;
+    max-width: 583px; // same as .wrapper on a desktop
+    margin: 0 auto;
+}
+
+main {
+    margin-top: 32px;
+}
+
+h1 {
+    font: bold 1.5rem $playfair;
+}
+
+h1 + p {
+    font: italic 500 .75rem $montserrat;
+    color: #4f4f4f;
+    background: no-repeat 0px 3.5px url(6dots.svg);
+
+    padding-left: 24px;
+    margin-top: 12px;
+    margin-right: 24px;
+}
+
+.cheesecake { // https://unsplash.com/photos/s8_7AqkzCWY
+    border-radius: 12px;
+    margin-top: 25px;
+}
+
+.brief-info {
+    margin-top: 24px;
+
+    display: grid;
+    gap: 20px;
+
+    .aside__item:nth-of-type(1) {
+        grid-column: 1 / 2;
+        grid-row: 1;
+    }
+    
+    .aside__item:nth-of-type(2) {
+        grid-column: 1 / 2;
+        grid-row: 2;
+    }
+
+    .aside__item:nth-of-type(3) {
+        grid-column: 2 / 3;
+        grid-row: 2;
+    }
+
+    .aside__item:nth-of-type(4) {
+        grid-column: 3 / 4;
+        grid-row: 2;
+    }
+
+
+    .aside__item {
+        display: flex;
+    }
+
+
+        i.material-icons { // icon
+            align-self: center;
+            color: #4f4f4f;
+            font-size: 1.188rem;
+        }
+
+        dl {
+            margin-left: .25rem;
+
+            dt {
+                font: bold .5rem $montserrat;
+                color: #bdbdbd;
+                text-transform: uppercase;
+            }
+            
+            dd {
+                font: 500 .625rem $montserrat;
+                color: #333333;
+            }
+        }
+
+        .aside__item:first-of-type {
+            i {
+                color: #f2994a;
+            }
+
+            dd {
+                color: #f2994a;
+            }
+        } 
+}
+
+
+.wrapper {
+    margin-top: 30px;
+}
+
+
+h2 {
+    font: bold 1.5rem $playfair;
+}
+
+fieldset {
+    border: none;
+    margin-top: 13px;
+    margin-bottom: 2rem;
+
+    legend {
+        font: italic 1.125rem $playfair;
+    
+        margin-bottom: 18px;
+    }
+}
+
+
+
+
+footer {
+    font: 600 .875rem $montserrat;
+    text-align: center;
+    color: #A9A9A9; 
+    
+    margin: 100px 0 21px;
+}
+    
+    .footer a {
+        color: inherit;
+        transition: color .2s;
+    }
+
+    .footer a:hover {
+        color: #333333;
+    }
+
+
+
+section {
+    color: #333333;    
+}
+
+
+
+
+
+label > p {
+    font: .875rem/179% $montserrat;
+}
+
+
+b {
+    font: inherit;
+    font-weight: bold;
+}
+
+i {
+    font-weight: 500;
+}
+
+
+
+// CHECKBOX STYLING (http://jsfiddle.net/link2twenty/3nrczx2q/)
+
+.md_checkbox { // --checkbox and text (entire checkable area)--
+    display: flex; // put checkbox and text on one line
+    align-items: flex-start; // checkbox always sits at the top of the item
+    margin-top: .3125rem;
+    cursor: pointer; // help visualy identify posibility to check the checkbox
+
+    
+    [type=checkbox] { // --not visible html checkbox--
+        position: absolute;
+        opacity: 0;
+    }
+    
+    .md_checkbox__tick { // --new checkbox--
+        position: relative; // so we can put check mark on top
+    }
+    
+    .md_checkbox__tick::before { // checkbox rectangle
+        content: '';
+        display: block;
+        margin-right: .8rem; // horizontal space for new checkbox
+        height: 1.313rem; // 21px
+        width: 1.313rem; // 21px
+        border: .0625rem solid #a9a9a9; // 1px
+        border-radius: .25rem; // 4px
+    }
+    
+    .md_checkbox__tick::after { // check sign on top of the check box
+        content: url('done.svg');
+        position: absolute;
+        top: .125rem;
+        width: 1.313rem; // #1 aligning
+        text-align: center; // #2 aligning
+        opacity: 0; // transperent until being checked 
+    }
+
+    // conditions of the checkbox
+    
+    [type=checkbox]:focus + .md_checkbox__tick::before {
+        border-color: #4f4f4f;
+    }
+    
+    [type=checkbox]:hover + .md_checkbox__tick::before {
+        background-color: rgba(185, 185, 185, 0.5);
+        border-color: #4f4f4f;
+    }
+
+    [type=checkbox]:checked + .md_checkbox__tick::before {
+        background-color: #F2994A;
+        border-color: #F2994A;
+    }
+
+    [type=checkbox]:checked:focus + .md_checkbox__tick::before,
+    [type=checkbox]:checked:hover + .md_checkbox__tick::before {
+        border-color: #4f4f4f;
+    }
+
+    [type=checkbox]:disabled + .md_checkbox__tick::before {
+        background: #828282;
+        border-color: #828282;
+    }
+    
+
+    // check mark
+    
+    
+    [type=checkbox]:checked + .md_checkbox__tick::after,
+    [type=checkbox]:hover + .md_checkbox__tick::after,
+    [type=checkbox]:focus + .md_checkbox__tick::after {
+        opacity: 1;
+    }
+
+    // text
+    
+    [type=checkbox]:checked ~ p {
+        text-decoration: line-through;
+        color: #828282;
+    }
+}
+
+
+
+
+// STYLING LIST-STYLE IMAGE (https://css-tricks.com/custom-list-number-styling/)
+
+ol {
+    list-style: none;
+    counter-reset: my-counter; // removes default counter
+    margin-top: 28px;
+    margin-left: 2px;
+
+    li {
+        counter-increment: my-counter; // starts counter on each item
+        margin-bottom: 30px;
+        padding-left: 3.188rem;
+
+        font: 1rem/150% $montserrat;
+        position: relative;
+    }
+
+    li::before {
+        content: counter(my-counter);
+        height: 2.25rem;
+        width: 2.25rem;
+        border-radius: .375rem;
+        background: #F2994A;
+        font: bold 1.5rem $playfair;
+        color: white;
+        position: absolute; // puts it at the start of the item
+        top: .25rem;
+        left: 0;
+        text-align: center;
+    }
+}
+
+cite {
+    display: block;
+    font: italic .75rem/150% $montserrat;
+    color: #bdbdbd;
+
+    a,
+    a:visited,
+    a:active {
+        color: inherit;
+    }
+
+    a:hover {
+        color: #333333;
+    }
+}
+
+@media screen and (min-width: 1024px) {
+    body {
+        max-width: 970px;
+    }
+
+    
+    // SPACING
+
+    h1 + p {
+        max-width: 616px;
+    }
+    
+    .cheesecake {
+        margin: 43px 0 48px;
+
+        height: 444px;
+        width: 100%;
+        object-fit: cover;
+    }
+
+    fieldset {
+        margin: 32px 0 38px;
+    }
+
+        legend {
+            margin-bottom: 30px;
+        }
+
+
+    
+    .brief-info {
+        width: 13.5rem; // 216px
+        height: 22.94rem; // 367px
+        box-shadow: 0px 0px 20px 3px rgba(169, 169, 169, 0.2);
+        border-radius: .75rem; // 12px
+        margin-top: 0;
+        padding: 3.125rem 2.688rem; // 50px 43px 
+
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+
+        i.material-icons {
+            font-size: 1.875rem; // 30px
+        }
+
+        dl {
+            margin-left: .75rem; // 12px
+
+            dt {
+                font-size: .625rem; // 10px
+            }
+            
+            dd {
+                font-size: .875rem; // 14px
+            }
+        }
+    }
+
+    // SIDEBAR
+
+    .brief-info {
+        float: right;
+        margin-left: 169px;
+    }
+
+    .wrapper {
+        display: flow-root;
+        margin-top: 0;
+    }
+
+
+
+    cite { 
+        margin-top: 50px;
+
+        > br {
+            display: none; // remove line break
+        }
+    }
+
+    // TYPOGRAPHY
+
+    h1 { font-size: 3rem; } // 48px
+    h1 + p { font-size: .875rem; } // 14px
+    h2 { font-size: 1.5rem; }  // 24px
+    fieldset legend { font-size: 1.125rem; }  // 18px
+    label > p {
+        font-size: 1rem; // 16px
+        line-height: 156%;        
+     }
+    cite { font-size: 1rem; } // 16px
+}
