@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Checkout page</title>
+
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Icons+Round" rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
+
+</head>
+<body>
+  <header>
+    <h1>Checkout</h1>
+  </header>
+
+  <main>
+    <section class="items">
+      <article>
+        <div class="image-wrapper">
+          <img class="image" src="photo1-src.jpg" alt="Brown and black leather bucket backpack on concrete staircase">
+        </div>
+        <!-- https://unsplash.com/photos/TeBKnxH_9XA -->
+        <p class="item__name">Vintage Backbag</p>
+        <p class="item__price"><span class="sale">$54.99</span> <s>$94.99</s></p>
+        <div class="number-input">
+          <button type="button" class="minus">remove</button>
+          <input class="item__quantity" type="number" value="1" min="0" max="77">
+          <button type="button" class="plus">add</button>
+        </div>
+      </article>
+      <article>
+        <div class="image-wrapper">
+        	<img class="image" src="photo2-src.jpg" alt="Black-and-brown Levi's low-top lace-up sneakers (plimsoll)">
+        </div>
+        <!-- https://unsplash.com/photos/jk54-OoI3EY -->
+        <p class="item__name">Levi Shoes</p>
+        <p class="item__price"><span class="sale">$74.99</span> <s>$124.99</s></p>
+        <div class="number-input">
+          <button type="button" class="minus">remove</button>
+          <input class="item__quantity" type="number" value="1" min="0" max="120">
+          <button type="button" class="plus">add</button>
+        </div>
+      </article>
+      <div class="price-wrapper"><p class="price-word">Shipping</p><p id="price-shipping">$19</p></div>
+      <div class="price-wrapper"><p class="price-word">Total</p><p id="price-total"></p></div>
+    </section>
+
+    <form>
+      <fieldset>
+        <legend>Contact information</legend>
+        <label for="email">E-mail
+          <input type="email" id="email" placeholder="Enter your email...">
+        </label>
+
+        <label for="phone">Phone
+          <input type="tel" id="phone" placeholder="Enter your phone...">
+        </label>
+      </fieldset>
+
+      <fieldset>
+        <div> <!-- fixes margin-bottom bug in chrome and other Blink browsers -->
+          <legend>Shipping address</legend>
+        </div>
+        <label for="name">Full name
+          <input type="text" id="name" placeholder="Your full name..">
+        </label>
+
+        <label for="address">Address
+          <input type="text" id="address" placeholder="Your address..">
+        </label>
+
+        <label for="city">City
+          <input type="text" id="city" placeholder="Your city..">
+        </label>
+
+        <label for="country">Country
+          <div class="select-wrapper">
+            <select name="country" id="country" required>
+              <!-- https://stackoverflow.com/questions/5805059/how-do-i-make-a-placeholder-for-a-select-box -->
+              <option value="" disabled selected hidden>Your country..</option>
+              <option value="USA">USA</option>
+              <option value="UK">UK</option>
+              <option value="Norway">Norway</option>
+              <option value="Ru">Russia</option>
+            </select>
+          </div>
+        </label>
+
+        <label for="zip">Postal code
+          <input type="number" placeholder="Your postal code.." id="zip" min="0">
+        </label>
+
+      </fieldset>
+      <label for="save" class="checkbox">
+        <input type="checkbox" id="save">
+        <p>Save this information for the next time</p>
+      </label>
+      <button class="submit">Continue</button>
+    </form>
+  </main>
+
+  <footer>
+    <p class="footer"><a href="https://github.com/iamchubko" target="_blank">Kirill Chubko</a> @ <a href="https://devchallenges.io" target="_blank">DevChallenges.io</a></p>
+  </footer>
+
+</body>
+</html>

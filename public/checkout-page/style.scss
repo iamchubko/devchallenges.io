@@ -1,0 +1,593 @@
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+img {
+    max-height: 100%;
+}
+
+html {
+    height: 100%;
+    padding: 32px 12px 0;
+}
+
+body {
+    height: inherit;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+    max-width: 350px;
+    margin: 0 auto;
+}
+
+    h1 {
+        color: #4E5150;
+        font-size: 1.5rem;
+    }
+
+main {
+    margin-top: 21px;
+}
+
+
+    .items {
+        max-width: 360px;
+        padding: 30px 27px 15px;
+        background-color: #F2F2F2;
+        border-radius: 12px;
+    }
+
+        article {
+            display: grid;
+            grid-template-columns: minmax(107px, 125px) 1fr;
+            grid-template-rows: min-content min-content 1fr;
+            column-gap: 20px;
+            row-gap: 6px;
+
+            margin-bottom: 30px;
+
+            color: #4E5150;
+        }
+
+            .image-wrapper {
+                grid-column: 1;
+                grid-row: 1 / span 3;
+                padding-top: 100%;
+                height: 0;
+                position: relative;
+                overflow: hidden;
+
+                border-radius: 13px;
+            }
+
+                .image {
+                    position: absolute;
+                    top: 0;
+                    transform: translate(-16%, 0%);
+                }
+
+            .item__name {
+                grid-column: 2;
+                grid-row: 1;
+
+                font-size: 0.75rem;
+            }
+            
+            .item__price {
+                grid-column: 2;
+                grid-row: 2;
+                
+                font-size: 0.875rem;
+                display: flex;
+                align-items: center;
+            }
+            
+                .sale {
+                    font-size: 0.875rem;
+                    color: #F2994A;
+                }
+                
+                s {
+                    font-size: 0.625rem;
+                    padding-left: 10px;
+                }
+
+            .number-input {
+                grid-column: 2;
+                grid-row: 3;
+
+                background-color: inherit;
+                color: #333333;
+            }
+
+        .price-wrapper {
+            display: flex;
+
+            border-top: 1px solid #BDBDBD;
+            padding: 10px 0;
+            color: #333333;
+            font-size: 0.875rem;
+        }
+
+        .price-wrapper:first-of-type {
+            margin-top: 87px;
+        }
+
+            .price-word {
+                margin-right: auto;
+            }
+
+
+// QUANTITY input https://stackoverflow.com/questions/45396280/customizing-increment-arrows-on-input-of-type-number-using-css
+
+        .item__quantity {
+            appearance: textfield;
+            border: 1px solid transparent;
+            border-radius: 4px;
+            background-color: inherit;
+            font-family: 'Montserrat', sans-serif;
+
+            width: 4rem;
+            text-align: center;
+            font-size: 1rem;
+        }
+
+        input[type=number]::-webkit-inner-spin-button,
+        input[type=number]::-webkit-outer-spin-button {
+            -webkit-appearance: none;
+        }
+        
+        .number-input {
+            padding: 14px 8px;
+            border: 1px solid #828282;
+            border-radius: 12px;
+            outline: unset;
+            justify-self: flex-start;
+            align-self: flex-end;
+
+            display: inline-flex;
+        }
+
+        .number-input button {
+            background-color: #E0E0E0;
+            color: #828282;
+            font: 1rem 'Material Icons Round';
+            border: none;
+            border-radius: 4px;
+            width: 1.25rem;
+            height: 1.25rem;
+            cursor: pointer;
+
+            position: relative;
+        }
+
+
+
+
+
+
+// FORMS
+
+        form {
+            margin: 40px 0;
+            display: flex;
+            flex-direction: column;
+        }
+
+            fieldset {
+                border: unset;
+                font-size: 0.875rem;
+            }
+            
+            fieldset:first-child {
+                margin-bottom: 45px;
+            }
+
+            fieldset:nth-child(2) {
+                margin-bottom: 10px;
+            }
+
+            legend {
+                color: #333333;
+                margin-bottom: 10px;
+            }
+            
+            label {
+                display: block;
+                font-size: 0.625rem;
+                color: #4F4F4F;
+                margin-bottom: 10px;
+
+                position: relative;
+            }
+
+            fieldset label input,
+            label select {
+                margin-top: 5px;
+                text-overflow: ellipsis;
+            }
+
+            fieldset input,
+            fieldset select {
+                width: 100%;
+
+                border: 1px solid #828282;
+                border-radius: 12px;
+                padding: 12px;
+                padding-left: 35px;
+                color: #333333;
+                font: 0.75rem 'Montserrat', sans-serif;
+            }
+
+            select {
+                padding-right: 30px;
+            }
+            
+
+
+
+    // states
+
+        input,
+        select,
+        button {
+            transition: border 0.2s, color 0.2s;
+        }
+    
+        button:focus,
+        input:focus,
+        select:focus {
+            border-color: #F2994A;
+            border: 1px solid #F2994A;
+            outline: none;
+        }
+
+        button:active {
+            color: #333333;
+        }
+
+        input:hover,
+        select:hover {
+            border-color: #333333;
+        }
+
+        
+
+
+            label::before,
+            select::before {
+                font-family: 'Material Icons Round';
+                font-size: 1rem;
+                position: absolute;
+                top: 30px;
+                left: 10px;
+                color: #828282;
+                z-index: 1;
+            }
+
+            label[for=email]::before { content: 'email'; }
+            label[for=phone]::before { content: 'phone'; }
+            label[for=name]::before { font-family: 'Material Icons'; content: 'account_circle'; }
+            label[for=address]::before { font-family: 'Material Icons'; content: 'home'; }
+            label[for=city]::before { content: 'location_city'; }
+            label[for=country]::before { content: 'public'; }
+            label[for=zip]::before { content: 'markunread_mailbox'; }
+
+            [type=checkbox] {
+                width: unset;
+            }
+
+
+
+        legend:nth-child(2) {
+            margin-bottom: -18px;
+        }
+
+        fieldset:nth-child(2) {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            column-gap: 23px;
+        }
+
+        fieldset:nth-child(2) legend,
+        fieldset:nth-child(2) label {
+            grid-column: 1 / span 2;
+        }
+        
+        fieldset:nth-child(2) label:nth-child(5) {
+            grid-column: 1;
+        }
+        
+        fieldset:nth-child(2) label:nth-child(6) {
+            grid-column: 2;
+        }
+
+
+
+            // https://developer.mozilla.org/en-US/docs/Learn/Forms/Advanced_form_styling
+            select {
+                appearance: none;
+            }
+
+                .select-wrapper {
+                    position: relative;
+                    margin: unset;
+                }
+
+                .select-wrapper::after {
+                    font-family: 'Material Icons Round';
+                    content: 'expand_more';
+                    font-size: 1rem;
+                    position: absolute;
+                    top: 17px;
+                    right: 10px;
+                    color: #828282;
+                    background-color: #E0E0E0;
+                    padding: 0.5px;
+                    border-radius: 4px;
+                }
+
+                select:invalid {
+                    color: #828282;
+                }
+
+                option {
+                    color: #333333;
+                }
+
+
+
+
+
+    // checkbox
+
+    [for=save] {
+        display: flex;
+        align-items: center;
+        cursor: pointer;
+
+        width: max-content;
+    }
+
+        [type=checkbox] {
+           padding: unset;
+           margin-right: 10px;
+            
+           appearance: none;
+           width: 1rem;
+           height: 1rem;
+           border: .0625rem solid #828282;
+           cursor: pointer;
+           border-radius: .25rem;
+
+           transition: background-color .2s, border-color .2s;
+        }
+
+        [type=checkbox]::before { // check sign on top of the check box
+            font-family: 'Material Icons Round';
+            content: 'check';
+            color: white;
+            font-size: 0.875rem;
+            opacity: 0; // transperent until being checked 
+        }
+
+        // conditions of the checkbox
+                
+                [type=checkbox]:focus {
+                    border-color: #F2994A;
+                }
+                
+                [type=checkbox]:hover {
+                    background-color: rgba(185, 185, 185, 0.5);
+                    border-color: #4f4f4f;
+                }
+
+                [type=checkbox]:checked {
+                    background-color: #F2994A;
+                    border-color: #F2994A;
+                }
+
+                [type=checkbox]:checked:focus,
+                [type=checkbox]:checked:hover {
+                    border-color: #4f4f4f;
+                }
+
+                [type=checkbox]:disabled {
+                    background-color: #828282;
+                    border-color: #828282;
+                }
+                
+
+                // check mark
+                
+                
+                [type=checkbox]:checked::before,
+                [type=checkbox]:hover::before,
+                [type=checkbox]:focus::before {
+                    opacity: 1;
+                }
+
+
+
+    // BUTTON  
+
+    .submit {
+        background-color: #F2994A;
+        color: white;
+        border: 1px solid #F2994A;
+        border-radius: 12px;
+        padding: 17px 45px;
+        font: 1rem 'Montserrat', sans-serif;
+        cursor: pointer;
+        margin-left: auto;
+        margin-top: 20px;
+
+        transition: background-color .2s, color .2s;
+    }
+
+    .submit:focus {
+        border-color: #333333;
+    }
+    
+    .submit:hover,
+    .submit:focus {
+        background-color: white;
+        color: #F2994A;
+    }
+    
+    
+
+
+
+    // FOOTER
+
+    footer {
+        font: 600 .875rem 'Montserrat', sans-serif;
+        text-align: center;
+        color: #A9A9A9; 
+        
+        margin-top: 100px;
+        padding-bottom: 21px;
+    }
+        
+        .footer a {
+            text-decoration: none;
+            color: inherit;
+            transition: color .2s;
+        }
+    
+        .footer a:hover {
+            color: #333333;
+        }
+
+
+@media screen and (min-width: 900px) {
+    html {
+        padding: 64px 50px 0;
+    }
+    
+    body {
+        max-width: 1024px;
+        display: flex;
+        flex-direction: column;
+    }
+
+        h1 {
+            font-size: 2.25rem;
+        }
+
+    main {
+        margin-top: 50px;
+
+        display: grid;
+        grid-template-columns: 1fr max-content;
+        column-gap: 110px;
+    }
+
+        .items {
+            grid-column: 2;
+            align-self: flex-start;
+
+            width: 383px;
+            height: 535px;
+            padding-bottom: 10px;
+            display: flex;
+            flex-direction: column;
+        }
+
+            article {
+                grid-template-columns: minmax(125px, 135px) 1fr;
+            }
+
+            .item__name,
+            .item__price {
+                font-size: 1rem;
+            }
+
+            .sale {
+                font-size: 1rem;
+            }
+
+            s {
+                font-size: 0.75rem;
+            }
+
+            .number-input {
+                padding: 15px 14px;
+            }
+
+            .price-wrapper {
+                font-size: 1.125rem;
+            }
+            
+            .price-wrapper:first-of-type {
+                margin-top: auto;
+            }
+        
+        form {
+            grid-column: 1;
+            grid-row: 1;
+            margin: unset;
+        }
+
+            fieldset {
+                font-size: 1.125rem;
+            }
+
+                legend {
+                    margin-bottom: 15px;
+                }
+
+                label {
+                    font-size: 0.75rem;
+                    margin-bottom: 17px;
+                }
+
+                fieldset label input,
+                label select {
+                    margin-top: 7px;
+                }
+
+                label::before,
+                select::before {
+                    font-size: 1.375rem;
+                    top: 37px;
+                    left: 15px;
+                }
+                
+                fieldset input,
+                fieldset select {
+                    font-size: 1rem;
+                    padding: 17px;
+                    padding-left: 52px;
+                }
+                
+                fieldset select {
+                    padding-right: 30px;
+                }
+
+                .select-wrapper::after {
+                    top: 24px;
+                    padding: 1.5px;
+                }
+
+
+        // checkbox
+        [type=checkbox] {
+            width: 1.3125rem;
+            height: 1.3125rem;
+        }
+        
+        [type=checkbox]::before {
+            font-size: 1.25rem;
+        }
+        
+
+        footer {
+            margin-top: auto;
+        }
+
+}
