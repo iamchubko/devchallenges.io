@@ -238,8 +238,10 @@ select {
 input,
 select,
 button {
-  -webkit-transition: border 0.2s, color 0.2s;
-  transition: border 0.2s, color 0.2s;
+  -webkit-transition: border 0.2s, -webkit-transform 0.1s;
+  transition: border 0.2s, -webkit-transform 0.1s;
+  transition: border 0.2s, transform 0.1s;
+  transition: border 0.2s, transform 0.1s, -webkit-transform 0.1s;
 }
 
 button:focus,
@@ -251,12 +253,46 @@ select:focus {
 }
 
 button:active {
-  color: #333333;
+  -webkit-transform: scale(0.9);
+          transform: scale(0.9);
+}
+
+button:focus:hover {
+  border-color: transparent;
 }
 
 input:hover,
 select:hover {
   border-color: #333333;
+}
+
+.submit:active:focus {
+  border-color: #F2994A;
+}
+
+fieldset label input,
+fieldset label select {
+  -webkit-transition-property: background-color, -webkit-box-shadow;
+  transition-property: background-color, -webkit-box-shadow;
+  transition-property: box-shadow, background-color;
+  transition-property: box-shadow, background-color, -webkit-box-shadow;
+  -webkit-transition-duration: .1s;
+          transition-duration: .1s;
+}
+
+fieldset label input:invalid:not(:focus):not(:placeholder-shown) {
+  background-color: pink;
+}
+
+fieldset label input:invalid:focus:not(:placeholder-shown) {
+  -webkit-box-shadow: inset -5px 0px 0px 0px #ff1f1f;
+          box-shadow: inset -5px 0px 0px 0px #ff1f1f;
+}
+
+fieldset label input:valid,
+fieldset label select:valid {
+  -webkit-box-shadow: inset -5px 0px 0px 0px #1ebd1e;
+          box-shadow: inset -5px 0px 0px 0px #1ebd1e;
 }
 
 label::before,
@@ -390,8 +426,10 @@ option {
   border: .0625rem solid #828282;
   cursor: pointer;
   border-radius: .25rem;
-  -webkit-transition: background-color .2s, border-color .2s;
-  transition: background-color .2s, border-color .2s;
+  -webkit-transition: -webkit-transform .2s;
+  transition: -webkit-transform .2s;
+  transition: transform .2s;
+  transition: transform .2s, -webkit-transform .2s;
 }
 
 [type=checkbox]::before {
@@ -409,6 +447,11 @@ option {
 [type=checkbox]:hover {
   background-color: rgba(185, 185, 185, 0.5);
   border-color: #4f4f4f;
+}
+
+[type=checkbox]:active {
+  -webkit-transform: scale(0.85);
+          transform: scale(0.85);
 }
 
 [type=checkbox]:checked {
@@ -442,8 +485,12 @@ option {
   cursor: pointer;
   margin-left: auto;
   margin-top: 20px;
-  -webkit-transition: background-color .2s, color .2s;
-  transition: background-color .2s, color .2s;
+  -webkit-transition: background-color, color, -webkit-transform;
+  transition: background-color, color, -webkit-transform;
+  transition: background-color, color, transform;
+  transition: background-color, color, transform, -webkit-transform;
+  -webkit-transition-duration: .2s;
+          transition-duration: .2s;
 }
 
 .submit:focus {

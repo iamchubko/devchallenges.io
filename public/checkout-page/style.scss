@@ -1,3 +1,6 @@
+$orange: #F2994A;
+
+
 *,
 *::before,
 *::after {
@@ -87,7 +90,7 @@ main {
             
                 .sale {
                     font-size: 0.875rem;
-                    color: #F2994A;
+                    color: $orange;
                 }
                 
                 s {
@@ -234,19 +237,23 @@ main {
         input,
         select,
         button {
-            transition: border 0.2s, color 0.2s;
+            transition: border 0.2s, transform 0.1s;
         }
     
         button:focus,
         input:focus,
         select:focus {
-            border-color: #F2994A;
-            border: 1px solid #F2994A;
+            border-color: $orange;
+            border: 1px solid $orange;
             outline: none;
         }
 
         button:active {
-            color: #333333;
+            transform: scale(0.9);
+        }
+
+        button:focus:hover {
+            border-color: transparent;
         }
 
         input:hover,
@@ -254,8 +261,44 @@ main {
             border-color: #333333;
         }
 
+        .submit:active:focus {
+            border-color: $orange;
+        }
         
 
+
+
+        
+
+        // validation states
+        // https://css-tricks.com/form-validation-ux-html-css/#sub-trick-testing-if-an-input-has-a-value-or-not
+        
+        fieldset label input,
+        fieldset label select {
+            transition-property: box-shadow, background-color;
+            transition-duration: .1s;
+        }
+
+
+
+        fieldset label input:invalid:not(:focus):not(:placeholder-shown) {
+            background-color: pink;
+        }
+        
+        fieldset label input:invalid:focus:not(:placeholder-shown) {
+            box-shadow: inset -5px 0px 0px 0px rgb(255, 31, 31);
+
+        }
+
+        fieldset label input:valid,
+        fieldset label select:valid {
+            box-shadow: inset -5px 0px 0px 0px rgb(30, 189, 30);
+        }
+
+
+
+
+        // icons
 
             label::before,
             select::before {
@@ -363,7 +406,7 @@ main {
            cursor: pointer;
            border-radius: .25rem;
 
-           transition: background-color .2s, border-color .2s;
+           transition: transform .2s;
         }
 
         [type=checkbox]::before { // check sign on top of the check box
@@ -377,7 +420,7 @@ main {
         // conditions of the checkbox
                 
                 [type=checkbox]:focus {
-                    border-color: #F2994A;
+                    border-color: $orange;
                 }
                 
                 [type=checkbox]:hover {
@@ -385,9 +428,13 @@ main {
                     border-color: #4f4f4f;
                 }
 
+                [type=checkbox]:active {
+                    transform: scale(0.85);
+                }
+
                 [type=checkbox]:checked {
-                    background-color: #F2994A;
-                    border-color: #F2994A;
+                    background-color: $orange;
+                    border-color: $orange;
                 }
 
                 [type=checkbox]:checked:focus,
@@ -415,9 +462,9 @@ main {
     // BUTTON  
 
     .submit {
-        background-color: #F2994A;
+        background-color: $orange;
         color: white;
-        border: 1px solid #F2994A;
+        border: 1px solid $orange;
         border-radius: 12px;
         padding: 17px 45px;
         font: 1rem 'Montserrat', sans-serif;
@@ -425,7 +472,8 @@ main {
         margin-left: auto;
         margin-top: 20px;
 
-        transition: background-color .2s, color .2s;
+        transition: background-color, color, transform;
+        transition-duration: .2s;
     }
 
     .submit:focus {
@@ -435,7 +483,7 @@ main {
     .submit:hover,
     .submit:focus {
         background-color: white;
-        color: #F2994A;
+        color: $orange;
     }
     
     
@@ -589,5 +637,4 @@ main {
         footer {
             margin-top: auto;
         }
-
 }

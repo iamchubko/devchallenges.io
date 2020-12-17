@@ -51,15 +51,15 @@
       <div class="price-wrapper"><p class="price-word">Total</p><p id="price-total"></p></div>
     </section>
 
-    <form>
+    <form action="#" method="POST">
       <fieldset>
         <legend>Contact information</legend>
         <label for="email">E-mail
-          <input type="email" id="email" placeholder="Enter your email...">
+          <input type="email" id="email" name="email" placeholder="Enter your email..." maxlength="40" required>
         </label>
 
-        <label for="phone">Phone
-          <input type="tel" id="phone" placeholder="Enter your phone...">
+        <label for="phone"><p class="req">Phone</p>
+          <input type="tel" id="phone" name="phone" placeholder="Enter your phone..." maxlength="18" required>
         </label>
       </fieldset>
 
@@ -68,15 +68,15 @@
           <legend>Shipping address</legend>
         </div>
         <label for="name">Full name
-          <input type="text" id="name" placeholder="Your full name..">
+          <input type="text" id="name" name="name" placeholder="Your full name.." maxlength="50" required pattern="[A-Z a-z]{1,}">
         </label>
 
         <label for="address">Address
-          <input type="text" id="address" placeholder="Your address..">
+          <input type="text" id="address" name="address" placeholder="Your address.." maxlength="50" required>
         </label>
 
         <label for="city">City
-          <input type="text" id="city" placeholder="Your city..">
+          <input type="text" id="city" name="city" placeholder="Your city.." maxlength="30" required pattern="[A-Za-z -]{1,}">
         </label>
 
         <label for="country">Country
@@ -93,12 +93,12 @@
         </label>
 
         <label for="zip">Postal code
-          <input type="number" placeholder="Your postal code.." id="zip" min="0">
+          <input type="number" id="zip" name="zip" placeholder="Your postal code.." min="0" required pattern="[0-9]">
         </label>
 
       </fieldset>
       <label for="save" class="checkbox">
-        <input type="checkbox" id="save">
+        <input type="checkbox" id="save" name="save">
         <p>Save this information for the next time</p>
       </label>
       <button class="submit">Continue</button>
