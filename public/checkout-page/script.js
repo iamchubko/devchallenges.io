@@ -21,13 +21,24 @@ function increment() {
     this.parentNode.querySelector('input[type=number]').stepUp();
     calcTotal();
     saveQty();
+
+    if (this.parentNode.querySelector('input[type=number]').value > '0') {
+        this.parentNode.querySelector('.minus').disabled = false;
+        this.parentNode.querySelector('.minus').style.cssText = 'cursor: pointer';
+    }
 }
 
 function decrement() {
     this.parentNode.querySelector('input[type=number]').stepDown();
     calcTotal();
     saveQty();
+    
+    if (this.parentNode.querySelector('input[type=number]').value === '0') {
+        this.disabled = true;
+        this.style.cssText = 'cursor: initial';
+    }
 }
+
 
 
 function calcTotal() { // calculates total price of items
@@ -129,6 +140,15 @@ window.onload = function() {
         }
     }
 
+    // disables button if qty === 0
+    for (let i = 0; i < inputsQuantity.length; i++) {
+        if (inputsQuantity[i].value === '0') {
+            inputsQuantity[i].parentNode.querySelector('.minus').disabled = true;
+            inputsQuantity[i].parentNode.querySelector('.minus').style.cssText = 'cursor: initial';
+
+        }
+    }
+    
     calcTotal();
 
     

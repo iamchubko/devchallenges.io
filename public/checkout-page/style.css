@@ -141,10 +141,9 @@ s {
   border: 1px solid transparent;
   border-radius: 4px;
   background-color: inherit;
-  font-family: 'Montserrat', sans-serif;
+  font: 600 1rem 'Montserrat', sans-serif;
   width: 4rem;
   text-align: center;
-  font-size: 1rem;
 }
 
 input[type=number]::-webkit-inner-spin-button,
@@ -175,6 +174,10 @@ input[type=number]::-webkit-outer-spin-button {
   height: 1.25rem;
   cursor: pointer;
   position: relative;
+}
+
+.number-input button:disabled {
+  color: #c5c5c5;
 }
 
 form {
@@ -228,7 +231,7 @@ fieldset select {
   padding: 12px;
   padding-left: 35px;
   color: #333333;
-  font: 0.75rem 'Montserrat', sans-serif;
+  font: 600 0.75rem 'Montserrat', sans-serif;
 }
 
 select {
@@ -253,8 +256,8 @@ select:focus {
 }
 
 button:active {
-  -webkit-transform: scale(0.9);
-          transform: scale(0.9);
+  -webkit-transform: scale(0.97);
+          transform: scale(0.97);
 }
 
 button:focus:hover {
@@ -266,7 +269,7 @@ select:hover {
   border-color: #333333;
 }
 
-.submit:active:focus {
+#submit:active:focus {
   border-color: #F2994A;
 }
 
@@ -281,7 +284,7 @@ fieldset label select {
 }
 
 fieldset label input:invalid:not(:focus):not(:placeholder-shown) {
-  background-color: pink;
+  border-color: #ff1f1f;
 }
 
 fieldset label input:invalid:focus:not(:placeholder-shown) {
@@ -475,13 +478,13 @@ option {
   opacity: 1;
 }
 
-.submit {
+#submit {
   background-color: #F2994A;
   color: white;
   border: 1px solid #F2994A;
   border-radius: 12px;
   padding: 17px 45px;
-  font: 1rem 'Montserrat', sans-serif;
+  font: 600 1rem 'Montserrat', sans-serif;
   cursor: pointer;
   margin-left: auto;
   margin-top: 20px;
@@ -493,12 +496,12 @@ option {
           transition-duration: .2s;
 }
 
-.submit:focus {
+#submit:focus {
   border-color: #333333;
 }
 
-.submit:hover,
-.submit:focus {
+#submit:hover,
+#submit:focus {
   background-color: white;
   color: #F2994A;
 }
@@ -507,8 +510,7 @@ footer {
   font: 600 .875rem 'Montserrat', sans-serif;
   text-align: center;
   color: #A9A9A9;
-  margin-top: 100px;
-  padding-bottom: 21px;
+  padding: 100px 0 21px;
 }
 
 .footer a {

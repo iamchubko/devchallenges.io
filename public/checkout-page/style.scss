@@ -131,11 +131,10 @@ main {
             border: 1px solid transparent;
             border-radius: 4px;
             background-color: inherit;
-            font-family: 'Montserrat', sans-serif;
+            font: 600 1rem 'Montserrat', sans-serif;
 
             width: 4rem;
             text-align: center;
-            font-size: 1rem;
         }
 
         input[type=number]::-webkit-inner-spin-button,
@@ -163,11 +162,14 @@ main {
             width: 1.25rem;
             height: 1.25rem;
             cursor: pointer;
-
+            
             position: relative;
         }
-
-
+        
+        
+        .number-input button:disabled {
+            color: #c5c5c5;
+        }
 
 
 
@@ -222,13 +224,12 @@ main {
                 padding: 12px;
                 padding-left: 35px;
                 color: #333333;
-                font: 0.75rem 'Montserrat', sans-serif;
+                font: 600 0.75rem 'Montserrat', sans-serif;
             }
 
             select {
                 padding-right: 30px;
             }
-            
 
 
 
@@ -249,7 +250,7 @@ main {
         }
 
         button:active {
-            transform: scale(0.9);
+            transform: scale(0.97);
         }
 
         button:focus:hover {
@@ -261,7 +262,7 @@ main {
             border-color: #333333;
         }
 
-        .submit:active:focus {
+        #submit:active:focus {
             border-color: $orange;
         }
         
@@ -282,12 +283,11 @@ main {
 
 
         fieldset label input:invalid:not(:focus):not(:placeholder-shown) {
-            background-color: pink;
+            border-color: rgb(255, 31, 31);
         }
         
         fieldset label input:invalid:focus:not(:placeholder-shown) {
             box-shadow: inset -5px 0px 0px 0px rgb(255, 31, 31);
-
         }
 
         fieldset label input:valid,
@@ -461,13 +461,13 @@ main {
 
     // BUTTON  
 
-    .submit {
+    #submit {
         background-color: $orange;
         color: white;
         border: 1px solid $orange;
         border-radius: 12px;
         padding: 17px 45px;
-        font: 1rem 'Montserrat', sans-serif;
+        font: 600 1rem 'Montserrat', sans-serif;
         cursor: pointer;
         margin-left: auto;
         margin-top: 20px;
@@ -476,12 +476,12 @@ main {
         transition-duration: .2s;
     }
 
-    .submit:focus {
+    #submit:focus {
         border-color: #333333;
     }
     
-    .submit:hover,
-    .submit:focus {
+    #submit:hover,
+    #submit:focus {
         background-color: white;
         color: $orange;
     }
@@ -497,8 +497,7 @@ main {
         text-align: center;
         color: #A9A9A9; 
         
-        margin-top: 100px;
-        padding-bottom: 21px;
+        padding: 100px 0 21px;
     }
         
         .footer a {
