@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Homepage | Edie</title>
+
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@800&family=Montserrat:wght@600&family=Poppins:wght@300;400;500;700;800&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Icons+Round" rel="stylesheet">
+
+    <script src="script.js" defer></script>
+    
+</head>
+ 
+<body>
+    <header>
+        <div class="logo header__logo" aria-label="logo">Edie</div>
+
+        <input type="checkbox" id="burger__checkbox">
+        <label id="burger" for="burger__checkbox" tabindex="0" aria-label="open menu" role="button">
+            <div class="burger__strip"></div>
+            <div class="burger__strip"></div>
+            <div class="burger__strip"></div>
+        </label>
+
+        <nav class="header__nav" aria-label="primary">
+            <ul class="menu__list">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#our-works">Our Works</a></li>
+                <li><a href="#clients">Clients</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <article id="home">
+            <p class="para--color para--color-blue para--color--margin">Unhappy with your website?</p>
+            <h1 class="home__h1">We create beautiful and fast web services</h1>
+    
+            <div class="heroimg__container">
+                <img class="heroimg" src="heroimage-src.jpg" alt="Three men sitting while using laptops and watching man beside whiteboard">
+            </div>
+            <!-- https://unsplash.com/photos/wD1LRb9OeEo -->
+    
+            <h2 class="h2 home__h2">Story, emotion and purpose</h2>
+                <p class="h2-para">We help transform your ideas into real world applications that will outperform your toughest competition and help you achieve your strategic goals in short period of time.</p>
+                <label for="user-email" id="contact" class="email-form email-form--margin">Want us to contact you?
+                    <div class="email-form__container">
+                        <input class="email-form__input" type="email" id="user-email__main" placeholder="Email" aria-label="your email">
+                        <a class="email-form__button" role="button" tabindex="0">Join</a>
+                    </div>
+                </label>
+        </article>
+
+        <article id="services">
+            <h2 class="services__h2">We offer high demand services</h2>
+                <div class="cards__container--grid">
+                    <section class="card">
+                        <h3 class="card__heading">UI/UX Design</h3>
+                        <p class="card__para">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis a metus ac nulla consequat aliquet id quis turpis.</p>
+                        <a href="#" class="card__link">Get started</a>
+                    </section>
+                    <section class="card">
+                        <h3 class="card__heading">Front End</h3>
+                        <p class="card__para">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis a metus ac nulla consequat aliquet id quis turpis.</p>
+                        <a href="#" class="card__link">Get started</a>
+                    </section>
+                    <section class="card">
+                        <h3 class="card__heading">Back End</h3>
+                        <p class="card__para">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis a metus ac nulla consequat aliquet id quis turpis.</p>
+                        <a href="#" class="card__link">Get started</a>
+                    </section>
+                </div>
+        </article>
+
+        <article id="our-works">
+            <h2 class="examples__h2">Good design means good business</h2>
+    
+                <div class="examples__container">
+                    <figure class="example">
+                        <div class="example__img__wrapper">
+                            <img class="example__img" src="smarthome.webp" alt="">
+                        </div>
+                        <!-- https://dribbble.com/shots/11021256-Houssy-Smart-Home-Dashboard -->
+                        <figcaption>
+                            <p class="example__para">Full stack application</p>
+                            <h3 class="example__heading">Smart home dashboard</h3>
+                        </figcaption>
+                    </figure>
+                    <figure class="example">
+                        <img class="example__img" src="onboard.png" alt="">
+                        <figcaption>
+                            <p class="example__para">UX/UI design</p>
+                            <h3 class="example__heading"> Onboard application</h3>
+                        </figcaption>
+                    </figure>
+                    <figure class="example">
+                        <img class="example__img" src="booking.png" alt="">
+                        <figcaption>
+                            <p class="example__para">Mobile application</p>
+                            <h3 class="example__heading">Booking system</h3>
+                        </figcaption>
+                    </figure>
+                    <figure class="example">
+                        <img class="example__img" src="juice-product.png" alt="">
+                        <figcaption>
+                            <p class="example__para">Front End application</p>
+                            <h3 class="example__heading">Juice product homepage</h3>
+                        </figcaption>
+                    </figure>
+                </div>
+    
+                <a href="#" class="examples__link">see more</a>
+        </article>
+
+
+        <article id="team">
+            <p class="para--color para--color-red">Meet the team</p>
+            <h2 class="team__h2">We are chilled and a laidback team</h2>
+            <p class="team__para">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+    
+            <div class="staff__container">
+                <img class="staff__img" src="person1.png" alt="boy">
+                <img class="staff__img" src="person2.png" alt="boy in glasses">
+                <img class="staff__img" src="person3.png" alt="girl">
+            </div>
+        </article>
+
+        <article id="clients">
+            <figure>
+                <blockquote>
+                    <p class="quote__para">“Fast and outstanding resutls. Edie understands their customer’s needs. They have a young and talented team.”</p>
+                </blockquote>
+                <figcaption>
+                    <div class="media-object">
+                        <img src="person4.png" alt="">
+                        <p>Carlos Tran</p>
+                        <p>The Decorate Gatsby</p>
+                    </div>
+                </figcaption>
+            </figure>
+        </article>
+    </main>
+
+    <footer>
+        <nav class="footer__nav" aria-label="secondary">
+            <ul class="footer__nav__menu">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#our-works">Our Works</a></li>
+                <li><a href="#clients">Clients</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+
+        <div class="logo footer__logo" aria-label="logo">Edie</div>
+
+        <div class="social-media">
+            <a class="social-media__link" href="#"></a>
+            <a class="social-media__link" href="#"></a>
+            <a class="social-media__link" href="#"></a>
+        </div>
+
+        <label for="user-email" id="contact" class="email-form email-form--footer">Want us to contact you?
+            <div class="email-form__container">
+                <input class="email-form__input" type="email" id="user-email__footer" placeholder="Email" aria-label="your email">
+                <a class="email-form__button" role="button" tabindex="0">Join</a>
+            </div>
+        </label>
+
+        <p class="credits"><a href="https://github.com/iamchubko" target="_blank">Kirill Chubko</a> @ <a href="https://devchallenges.io" target="_blank">DevChallenges.io</a></p>
+    </footer>
+</body>
+</html>
