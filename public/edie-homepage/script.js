@@ -1,47 +1,79 @@
-// ---> enabling animations and validation on the input
+// ---> enabling animations and validation on the Input
 
 const sendEmailBtns = document.querySelectorAll('.email-form__button');
 
+let errorMessage;
 let showPlaceholder;
 let removeError;
+let removeValues;
+
+const forms = document.querySelectorAll('.email-form__container');
+
+
+// prevent form from sending itself and reloading the page
+// https://developer.mozilla.org/en-US/docs/Web/API/HTMLFormElement/submit_event
+forms.forEach(e => {
+    e.addEventListener('submit', e => {
+        e.preventDefault();
+    });
+});
 
 sendEmailBtns.forEach(e => {
     e.addEventListener('click', e => {
-        let input = e.target.parentNode.querySelector('input');
+        // correct elements will be triggered no matter what inputs you choose
+        let currentForm = e.target.parentNode;
+        let currentInput = e.target.parentNode.querySelector('input');
+        let currentBtn = e.target.parentNode.querySelector('a');
 
-        if (!(input.value === '') && e.target.className === 'email-form__button') {
+
+        // animation of shaking button when error
+        function shakingBtn() {
+            currentBtn.classList.add('email-form__button--error');
+                    
+            let removeAnim = setTimeout(() => {
+                currentBtn.classList.remove('email-form__button--error');
+            }, 200);
+        }
+
+
+        if (!(currentInput.value === '') && currentInput.validity.valid && currentBtn.className === 'email-form__button') {
             // removes error if it previously has been fired
             clearTimeout(removeError);
-            input.classList.remove('email-form__input--error');
 
-            // clear input so placeholder is visible
-            input.value = '';
-
-            e.target.classList.add('email-form__button--sent');
-            e.target.disabled = true;
-
-            input.classList.add('email-form__input--sent');
-            input.placeholder = 'Your email has been sent!';
-            input.disabled = true;
+            // clear currentInput so placeholder is visible
             
-            showPlaceholder = setTimeout(() => {
-                e.target.textContent = '';
-                input.classList.add('show-placeholder');
-            }, 500);
-        } else if (input.value === '' && e.target.className === 'email-form__button') {
+            currentBtn.classList.add('email-form__button--sent');
+            currentBtn.disabled = true;
+            
+            currentInput.classList.add('email-form__input--sent');
+            currentInput.disabled = true;
+            currentInput.placeholder = 'Your email has been sent!';
+            
+            removeValues = setTimeout(() => {
+                currentInput.value = '';
+                currentBtn.textContent = '';
+
+                showPlaceholder = setTimeout(() => {
+                    currentInput.classList.add('show-placeholder');
+                }, 300);
+            }, 250);
+
+
+        } else if (!currentInput.checkValidity()) {
+            shakingBtn();
+            // triggers default pop up validation on click of the button
+            currentForm.reportValidity();
+
+        } else if (currentInput.value === '' && currentBtn.className === 'email-form__button') {
             clearTimeout(removeError);
 
-            input.placeholder = 'There\'s nothing to sent!';
-            input.classList.add('email-form__input--error');
-            e.target.classList.add('email-form__button--error');
-            
-            let removeAnim = setTimeout(() => {
-                e.target.classList.remove('email-form__button--error');
-            }, 200);
+            currentInput.placeholder = 'There\'s nothing to sent!';
+            currentInput.classList.add('email-form__input--error');
+            shakingBtn();
 
             removeError = setTimeout(() => {
-                input.placeholder = 'Email';
-                input.classList.remove('email-form__input--error');
+                currentInput.placeholder = 'Email';
+                currentInput.classList.remove('email-form__input--error');
             }, 3000);
         }
     });
@@ -66,13 +98,13 @@ burgerBtn.addEventListener('click', () => {
 
 
 
-// ---> making invisible to user item don't tabbale
+// ---> making invisible to user item don't tabbable
 // ---> therfore improving UX
 
 const checkbox = document.getElementById('burger__checkbox');
 const body = document.querySelector('body');
 
-const evrtngElseArray = document.querySelectorAll('main input, main a, footer input, footer a');
+const evrtngElseArray = document.querySelectorAll('main currentInput, main a, footer currentInput, footer a');
 const menuArray = document.querySelectorAll('header a');
 
 
@@ -112,11 +144,11 @@ window.onload = function() {
         noTabMain();
         body.classList.add('overflow');
         
-        console.log('on page load width is <1024 and menu is open');
+        // console.log('on page load width is <1024 and menu is open');
     } else if (!checkbox.cheked && window.innerWidth < 1024) {
         noTabMenu();
 
-        console.log('on page load width is <1024 and menu is closed');
+        // console.log('on page load width is <1024 and menu is closed');
     }
 }
 
@@ -127,13 +159,13 @@ burgerBtn.addEventListener('click', function() {
         body.classList.remove('overflow');
         noTabMenu();
         
-        console.log('menu is closed');
+        // console.log('menu is closed');
     } else {
         noTabMain();
         body.classList.add('overflow');
         yesTabMenu();
         
-        console.log('menu is open');
+        // console.log('menu is open');
     }
 });
 
@@ -144,19 +176,19 @@ window.addEventListener('resize', function() {
         body.classList.add('overflow');
         yesTabMenu();        
         
-        console.log('menu is open and viewport is <1024px wide');
+        // console.log('menu is open and viewport is <1024px wide');
     } else if (window.innerWidth >= 1024) {
         yesTabMain();
         body.classList.remove('overflow');
         yesTabMenu();
         
-        console.log('viewport is >=1024px wide');
+        // console.log('viewport is >=1024px wide');
     } else {
         yesTabMain();
         body.classList.remove('overflow');
         noTabMenu();
         
-        console.log('viewport is <1024px wide');
+        // console.log('viewport is <1024px wide');
     }
 });
 
@@ -177,3 +209,17 @@ itemsToNavigate.forEach(e => {
     });
 });
 
+
+
+// clicking links in mobile menu makes menu close 
+// https://www.sitepoint.com/javascript-media-queries/
+const mq = window.matchMedia( "(min-width: 1024px" );
+
+menuArray.forEach(e => {
+    e.addEventListener('click', e => {
+        if (!mq.matches) {
+            console.log('dammit');
+            burgerBtn.click();
+        }
+    });
+});

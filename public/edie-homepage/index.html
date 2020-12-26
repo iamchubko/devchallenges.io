@@ -48,14 +48,14 @@
             </div>
             <!-- https://unsplash.com/photos/wD1LRb9OeEo -->
     
-            <h2 class="h2 home__h2">Story, emotion and purpose</h2>
+            <h2 class="h2 home__h2" id="contact">Story, emotion and purpose</h2>
                 <p class="h2-para">We help transform your ideas into real world applications that will outperform your toughest competition and help you achieve your strategic goals in short period of time.</p>
-                <label for="user-email" id="contact" class="email-form email-form--margin">Want us to contact you?
-                    <div class="email-form__container">
-                        <input class="email-form__input" type="email" id="user-email__main" placeholder="Email" aria-label="your email">
+                <form class="email-form__container">
+                    <label for="user-email__main" class="email-form email-form--margin">Want us to contact you?
+                        <input class="email-form__input" type="email" id="user-email__main" placeholder="Email" aria-label="your email" minlength="5" maxlength="50">
                         <a class="email-form__button" role="button" tabindex="0">Join</a>
-                    </div>
-                </label>
+                    </label>
+                </form>
         </article>
 
         <article id="services">
@@ -149,32 +149,34 @@
     </main>
 
     <footer>
-        <nav class="footer__nav" aria-label="secondary">
-            <ul class="footer__nav__menu">
-                <li><a href="#home">Home</a></li>
-                <li><a href="#services">Services</a></li>
-                <li><a href="#our-works">Our Works</a></li>
-                <li><a href="#clients">Clients</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
-        </nav>
-
-        <div class="logo footer__logo" aria-label="logo">Edie</div>
-
-        <div class="social-media">
-            <a class="social-media__link" href="#"></a>
-            <a class="social-media__link" href="#"></a>
-            <a class="social-media__link" href="#"></a>
-        </div>
-
-        <label for="user-email" id="contact" class="email-form email-form--footer">Want us to contact you?
-            <div class="email-form__container">
-                <input class="email-form__input" type="email" id="user-email__footer" placeholder="Email" aria-label="your email">
-                <a class="email-form__button" role="button" tabindex="0">Join</a>
+        <div class="footer__wrapper">
+            <nav class="footer__nav" aria-label="secondary">
+                <ul class="footer__nav__menu">
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#our-works">Our Works</a></li>
+                    <li><a href="#clients">Clients</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+    
+            <div class="logo footer__logo" aria-label="logo">Edie</div>
+    
+            <div class="social-media">
+                <a class="social-media__link" href="#"></a>
+                <a class="social-media__link" href="#"></a>
+                <a class="social-media__link" href="#"></a>
             </div>
-        </label>
-
-        <p class="credits"><a href="https://github.com/iamchubko" target="_blank">Kirill Chubko</a> @ <a href="https://devchallenges.io" target="_blank">DevChallenges.io</a></p>
+    
+            <form class="email-form__container">
+                <label for="user-email__footer" class="email-form email-form--footer">Want us to contact you?
+                    <input class="email-form__input" type="email" id="user-email__footer" placeholder="Email" aria-label="your email" minlength="5" maxlength="50">
+                    <a class="email-form__button" role="button" tabindex="0">Join</a>
+                </label>
+            </form>
+    
+            <p class="credits"><a href="https://github.com/iamchubko" target="_blank">Kirill Chubko</a> @ <a href="https://devchallenges.io" target="_blank">DevChallenges.io</a></p>
+        </div>
     </footer>
 </body>
 </html>

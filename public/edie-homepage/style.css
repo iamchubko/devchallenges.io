@@ -34,12 +34,18 @@ h2 {
 
 html {
   padding-top: 13px;
+  scroll-behavior: smooth;
 }
 
 body {
   font-family: "Poppins", sans-serif;
+}
+
+header,
+main {
+  padding: 0 10px;
+  max-width: 800px;
   margin: 0 auto;
-  max-width: 700px;
 }
 
 header {
@@ -214,7 +220,7 @@ main {
 
 .home__h2,
 .h2-para,
-#contact {
+.email-form--margin {
   max-width: 366px;
 }
 
@@ -273,24 +279,45 @@ main {
   border-radius: 12px;
   color: #333333;
   border: unset;
-  padding: 4px 19px;
-  line-height: 40px;
+  padding: 4px 0;
+  padding-left: 19px;
+  padding-right: 90px;
+  line-height: 39.5px;
   font-family: inherit;
   width: 100%;
-  padding-left: 19px;
-  -webkit-transition-property: padding-left;
-  transition-property: padding-left;
-  -webkit-transition-duration: .3s;
-          transition-duration: .3s;
 }
 
 .email-form__input--sent {
-  padding-left: 50px;
-  text-align: center;
+  -webkit-animation: input--sent .3s both;
+          animation: input--sent .3s both;
+}
+
+@-webkit-keyframes input--sent {
+  99% {
+    padding-left: 19px;
+    padding-right: calc(100% - 19px);
+  }
+  100% {
+    padding-left: 50px;
+    padding-right: 19px;
+  }
+}
+
+@keyframes input--sent {
+  99% {
+    padding-left: 19px;
+    padding-right: calc(100% - 19px);
+  }
+  100% {
+    padding-left: 50px;
+    padding-right: 19px;
+  }
 }
 
 ::-webkit-input-placeholder {
   color: #BDBDBD;
+  -webkit-transform: translateX(0);
+          transform: translateX(0);
   -webkit-transition-property: color, -webkit-transform;
   transition-property: color, -webkit-transform;
   transition-property: color, transform;
@@ -301,6 +328,7 @@ main {
 
 :-ms-input-placeholder {
   color: #BDBDBD;
+  transform: translateX(0);
   -webkit-transition-property: color, -webkit-transform;
   transition-property: color, -webkit-transform;
   transition-property: color, transform;
@@ -310,6 +338,7 @@ main {
 
 ::-ms-input-placeholder {
   color: #BDBDBD;
+  transform: translateX(0);
   -webkit-transition-property: color, -webkit-transform;
   transition-property: color, -webkit-transform;
   transition-property: color, transform;
@@ -319,6 +348,8 @@ main {
 
 ::placeholder {
   color: #BDBDBD;
+  -webkit-transform: translateX(0);
+          transform: translateX(0);
   -webkit-transition-property: color, -webkit-transform;
   transition-property: color, -webkit-transform;
   transition-property: color, transform;
@@ -328,25 +359,35 @@ main {
 }
 
 .email-form__input--sent::-webkit-input-placeholder {
+  text-align: center;
   color: #F2F2F2;
   -webkit-transform: translateX(20px);
           transform: translateX(20px);
+  -webkit-transition-duration: .3s;
+          transition-duration: .3s;
 }
 
 .email-form__input--sent:-ms-input-placeholder {
+  text-align: center;
   color: #F2F2F2;
   transform: translateX(20px);
+  transition-duration: .3s;
 }
 
 .email-form__input--sent::-ms-input-placeholder {
+  text-align: center;
   color: #F2F2F2;
   transform: translateX(20px);
+  transition-duration: .3s;
 }
 
 .email-form__input--sent::placeholder {
+  text-align: center;
   color: #F2F2F2;
   -webkit-transform: translateX(20px);
           transform: translateX(20px);
+  -webkit-transition-duration: .3s;
+          transition-duration: .3s;
 }
 
 .show-placeholder::-webkit-input-placeholder {
@@ -394,17 +435,15 @@ main {
   font-weight: 500;
   text-align: center;
   position: absolute;
-  top: 4px;
-  right: 6px;
+  right: 0px;
+  margin: 4px;
   padding: 10px 0;
   border-radius: 12px;
   cursor: default;
   width: 71px;
   height: 39px;
-  -webkit-transition-property: right, background-color, color, width;
-  transition-property: right, background-color, color, width;
-  -webkit-transition-duration: .3s;
-          transition-duration: .3s;
+  -webkit-transition: color .2s, background-color .4s, width .2s, right .4s;
+  transition: color .2s, background-color .4s, width .2s, right .4s;
   -webkit-transition-timing-function: cubic-bezier(0.33, 1, 0.68, 1);
           transition-timing-function: cubic-bezier(0.33, 1, 0.68, 1);
 }
@@ -437,7 +476,7 @@ main {
 }
 
 .email-form__button--sent {
-  right: 84%;
+  right: calc(100% - 47px);
   background-color: #27AE60;
   color: #27AE60;
   width: 39px;
@@ -578,10 +617,24 @@ main {
 
 .examples__container {
   margin-top: 48px;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: (minmax(250px, 1fr))[auto-fill];
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  row-gap: 36px;
+  -webkit-column-gap: 20px;
+          column-gap: 20px;
 }
 
 .example:not(:last-child) {
   margin-bottom: 36px;
+}
+
+.example:nth-child(odd) {
+  margin-top: 0;
+  /* smooth slide on media query */
+  -webkit-transition: margin-top .3s;
+  transition: margin-top .3s;
 }
 
 .example__img__wrapper {
@@ -626,20 +679,17 @@ main {
   color: #2D9CDB;
   font-weight: 500;
   font-size: 1.125rem;
-  position: relative;
   margin-top: 35px;
 }
 
 .examples__link::after {
-  position: absolute;
-  display: inline-block;
-  right: -25px;
-  top: 1px;
   font-family: "Material Icons Round";
   content: 'arrow_right_alt';
+  font-size: 1.125rem;
   color: inherit;
-  font-size: 18px;
-  line-height: 27px;
+  display: inline-block;
+  -webkit-transform: translate(50%, 20%);
+          transform: translate(50%, 20%);
   -webkit-transition: -webkit-transform .25s;
   transition: -webkit-transform .25s;
   transition: transform .25s;
@@ -647,8 +697,8 @@ main {
 }
 
 .examples__link:hover::after {
-  -webkit-transform: translateX(5px);
-          transform: translateX(5px);
+  -webkit-transform: translate(75%, 20%);
+          transform: translate(75%, 20%);
 }
 
 #team {
@@ -663,6 +713,7 @@ main {
 .team__para {
   margin-right: 30%;
   margin-bottom: 36px;
+  font-size: 0.875rem;
 }
 
 .staff__container {
@@ -671,6 +722,8 @@ main {
   -ms-grid-columns: calc(53% - 9px) 45%;
       grid-template-columns: calc(53% - 9px) 45%;
   gap: 9px;
+  max-width: 650px;
+  margin-left: auto;
 }
 
 .staff__img {
@@ -701,6 +754,8 @@ main {
   -ms-flex-item-align: center;
       -ms-grid-row-align: center;
       align-self: center;
+  -ms-grid-column-align: end;
+      justify-self: end;
 }
 
 #clients {
@@ -717,8 +772,8 @@ main {
   margin-top: 27px;
   display: -ms-grid;
   display: grid;
-  -ms-grid-columns: 23% 1fr;
-      grid-template-columns: 23% 1fr;
+  -ms-grid-columns: 82px 1fr;
+      grid-template-columns: 82px 1fr;
   -ms-grid-rows: 1fr 1fr;
       grid-template-rows: 1fr 1fr;
   -webkit-column-gap: 30px;
@@ -743,7 +798,7 @@ main {
   -ms-grid-row: 1;
   grid-row: 1;
   font-weight: 500;
-  font-size: 24px;
+  font-size: 1.5rem;
   color: #333333;
 }
 
@@ -753,15 +808,20 @@ main {
   -ms-grid-row: 2;
   grid-row: 2;
   font-weight: 500;
-  font-size: 18px;
+  font-size: 1.125rem;
   color: #828282;
 }
 
 footer {
   margin-top: 100px;
   padding: 36px 41px;
-  background-color: #100E1D;
   color: white;
+  background-color: #100E1D;
+}
+
+.footer__wrapper {
+  max-width: 700px;
+  margin: 0 auto;
 }
 
 .footer__nav {
@@ -819,7 +879,7 @@ footer {
   text-align: center;
 }
 
-@media screen and (min-width: 1024px) {
+@media screen and (min-width: 1250px) {
   h1 {
     font-size: 3rem;
   }
@@ -829,14 +889,10 @@ footer {
   html {
     padding-top: 42px;
   }
-  body {
-    max-width: unset;
-  }
   header,
   main {
     max-width: 1350px;
     padding: 0 15px;
-    margin: 0 auto;
   }
   .header__logo {
     font-size: 2.25rem;
@@ -876,15 +932,18 @@ footer {
   .home__h1,
   .home__h2,
   .h2-para,
-  #contact {
+  .email-form--margin {
     margin-left: 225px;
   }
-  .para--color--margin {
+  .para--color {
     font-size: 1.125rem;
   }
   .home__h1 {
     max-width: 540px;
     margin-top: 16px;
+  }
+  .home__h2 {
+    margin-top: 42px;
   }
   .heroimg__container {
     padding-top: 26.5%;
@@ -896,21 +955,52 @@ footer {
   .h2-para {
     font-size: 1.125rem;
   }
-  #contact {
+  .email-form {
+    font-size: 0.875rem;
+  }
+  .email-form__container {
+    margin-top: 9px;
+  }
+  .email-form__input {
+    font-size: 1.125rem;
+    line-height: 49.5px;
+    padding-right: 110px;
+  }
+  .email-form__input--sent {
+    padding-left: 62px;
+    padding-right: calc(100% - 62px);
+  }
+  .email-form__button {
+    font-size: 1.125rem;
+    padding: 11px 0;
+    width: 94px;
+    height: 49px;
+  }
+  .email-form__button--sent {
+    right: calc(100% - 57px);
+    width: 49px;
+  }
+  .email-form__button::before {
+    font-size: 2rem;
+    left: 9px;
+  }
+  .email-form--margin {
     max-width: 350px;
   }
   #services,
   #our-works,
   #team,
-  #clients {
+  #clients,
+  .footer__wrapper {
     max-width: 1100px;
     margin: 0 auto;
   }
   #services {
-    margin: 200px auto 0;
+    margin-top: 200px;
   }
   .services__h2 {
     max-width: 370px;
+    margin-left: unset;
   }
   .cards__container--grid {
     display: -ms-grid;
@@ -918,8 +1008,8 @@ footer {
     -webkit-column-gap: 10px;
             column-gap: 10px;
     height: 422px;
-    -ms-grid-columns: (340px)[auto-fill];
-        grid-template-columns: repeat(auto-fill, 340px);
+    -ms-grid-columns: (minmax(0, 340px))[3];
+        grid-template-columns: repeat(3, minmax(0, 340px));
   }
   .card:not(:last-child) {
     margin: unset;
@@ -942,15 +1032,21 @@ footer {
     -ms-grid-row: 1;
     grid-row: 1;
   }
+  #our-works {
+    margin-top: 200px;
+  }
+  .examples__h2 {
+    max-width: 450px;
+  }
   .examples__container {
+    margin-top: unset;
     display: -ms-grid;
     display: grid;
     -ms-grid-columns: 1fr 1fr;
         grid-template-columns: 1fr 1fr;
     -ms-grid-rows: 1fr 1fr;
         grid-template-rows: 1fr 1fr;
-    -webkit-column-gap: 20px;
-            column-gap: 20px;
+    row-gap: unset;
   }
   .example:not(:last-child) {
     margin: unset;
@@ -958,12 +1054,33 @@ footer {
   .example:nth-child(odd) {
     margin-top: 32%;
   }
+  .example__para {
+    margin-top: 20px;
+    font-size: 0.875rem;
+  }
+  .example__heading {
+    font-size: 1.5rem;
+  }
+  .examples__link {
+    margin-top: unset;
+    font-size: 1.5rem;
+    display: block;
+    text-align: right;
+    -webkit-transform: translateY(-100%);
+            transform: translateY(-100%);
+  }
+  .examples__link::after {
+    font-size: 1.5rem;
+  }
   #team {
     margin-top: 220px;
     display: -ms-grid;
     display: grid;
     -ms-grid-columns: 300px 1fr;
         grid-template-columns: 300px 1fr;
+    -ms-grid-rows: 2fr min-content 3fr;
+        grid-template-rows: 2fr -webkit-min-content 3fr;
+        grid-template-rows: 2fr min-content 3fr;
     -webkit-column-gap: 190px;
             column-gap: 190px;
   }
@@ -972,6 +1089,9 @@ footer {
     grid-column: 1;
     -ms-grid-row: 1;
     grid-row: 1;
+    -ms-flex-item-align: end;
+        -ms-grid-row-align: end;
+        align-self: end;
   }
   .team__h2 {
     margin: unset;
@@ -986,17 +1106,75 @@ footer {
     grid-column: 1;
     -ms-grid-row: 3;
     grid-row: 3;
+    font-size: 1rem;
   }
   .staff__container {
     margin: unset;
     -ms-grid-column: 2;
     grid-column: 2;
     -ms-grid-row: 1;
-    -ms-grid-row-span: 4;
-    grid-row: 1 / span 4;
+    -ms-grid-row-span: 3;
+    grid-row: 1 / span 3;
   }
   #clients {
     margin-top: 200px;
+  }
+  .quote__para {
+    max-width: 940px;
+    font-size: 2.25rem;
+  }
+  .media-object {
+    margin-top: 45px;
+    -ms-grid-columns: 82px 1fr;
+        grid-template-columns: 82px 1fr;
+  }
+  footer {
+    margin-top: 200px;
+    padding-top: 46px;
+  }
+  .footer__wrapper {
+    display: -ms-grid;
+    display: grid;
+    -ms-grid-columns: (1fr)[3];
+        grid-template-columns: repeat(3, 1fr);
+    -ms-grid-rows: max-content;
+        grid-template-rows: -webkit-max-content;
+        grid-template-rows: max-content;
+  }
+  .footer__wrapper > * {
+    margin: unset;
+  }
+  .footer__nav {
+    -ms-grid-column: 1;
+    grid-column: 1;
+    -ms-grid-row: 1;
+    -ms-grid-row-span: 2;
+    grid-row: 1 / span 2;
+  }
+  .footer__logo {
+    -ms-grid-column: 2;
+    grid-column: 2;
+    -ms-grid-row: 1;
+    grid-row: 1;
+  }
+  .social-media {
+    -ms-grid-column: 2;
+    grid-column: 2;
+    -ms-grid-row: 2;
+    grid-row: 2;
+  }
+  .email-form--footer {
+    -ms-grid-column: 3;
+    grid-column: 3;
+    -ms-grid-row: 1;
+    -ms-grid-row-span: 2;
+    grid-row: 1 / span 2;
+  }
+  .credits {
+    grid-column: 1 / -1;
+    -ms-grid-row: 3;
+    grid-row: 3;
+    margin-top: 113px;
   }
 }
 /*# sourceMappingURL=style.css.map */
