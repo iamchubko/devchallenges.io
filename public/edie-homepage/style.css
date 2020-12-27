@@ -532,6 +532,12 @@ main {
   }
 }
 
+@-moz-document url-prefix() {
+  .email-form__button::before {
+    top: 6px;
+  }
+}
+
 #services {
   margin-top: 100px;
 }

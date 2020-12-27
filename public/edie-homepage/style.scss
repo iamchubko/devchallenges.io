@@ -441,6 +441,17 @@ main {
                 }
 
 
+
+                // fix specific for firefox with position: absolute; element
+                // https://stackoverflow.com/questions/3576624/problem-with-absolute-positioning-in-firefox-and-chrome
+                // https://stackoverflow.com/questions/3123063/what-does-moz-document-url-prefix-do
+                @-moz-document url-prefix() { 
+                    .email-form__button::before {
+                        top: 6px;
+                    }
+                }
+
+
             
 
     // #services

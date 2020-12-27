@@ -39,6 +39,7 @@ sendEmailBtns.forEach(e => {
         if (!(currentInput.value === '') && currentInput.validity.valid && currentBtn.className === 'email-form__button') {
             // removes error if it previously has been fired
             clearTimeout(removeError);
+            currentInput.classList.remove('email-form__input--error');
 
             // clear currentInput so placeholder is visible
             
