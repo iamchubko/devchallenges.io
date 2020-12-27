@@ -231,12 +231,14 @@ let header = document.querySelector('header');
 let prevScrollPos = window.pageYOffset;
 
 window.onscroll = function() {
-    let currentScrollPos = window.pageYOffset;
-    if (prevScrollPos > currentScrollPos) {
-        header.style.top = '0';
-    } else {
-        header.style.top = '-50px';
+    if (!checkbox.checked) {
+        let currentScrollPos = window.pageYOffset;
+        if (prevScrollPos > currentScrollPos) {
+            header.style.top = '0';
+        } else {
+            header.style.top = '-50px';
+        }
+        
+        prevScrollPos = currentScrollPos;
     }
-
-    prevScrollPos = currentScrollPos;
 }
