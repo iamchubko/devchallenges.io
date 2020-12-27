@@ -58,7 +58,6 @@ a {
 
 
 html {
-    padding-top: 13px;
     scroll-behavior: smooth;
 }
 
@@ -66,20 +65,45 @@ body {
     font-family: $poppins;
 }
 
-header,
 main {
     padding: 0 10px;
     max-width: 800px;
     margin: 0 auto;
 }
 
+
+// https://css-tricks.com/hash-tag-links-padding/#fancier-clean-html-method
+#home::before,
+#services::before,
+#our-works::before,
+#clients::before,
+#contact::before {
+    display: block;
+    content: '';
+    margin-top: -49px;
+    height: 49px;
+    visibility: hidden;
+    pointer-events: none;
+}
+
+
 // || Header
 
     header {
-        display: flex;
-        margin: 0 10px;
-    }
+        position: fixed;
+        top: 0;
+        width: 100%;
+        padding: 7px 10px;
+        z-index: 1;
+        border-radius: 0 0 15px 15px;
+        background-color: rgba(255, 255, 255, 0.5);
+        backdrop-filter: blur(5px);
+        transition: top 0.3s;
 
+        display: flex;
+        align-items: center;
+    }
+    
         .logo {
             font-family: $heebo;
             font-weight: 800;
@@ -97,16 +121,12 @@ main {
         }
 
         #burger { /* burger button */
-            position: fixed; /* always on the screen */
-            top: 19px;
-            right: 17px;
+            margin-left: auto;
 
             height: 18px;
             width: 18px;
             box-sizing: content-box;
             padding: 5px;
-            border-radius: 10px;
-            background-color: white;
 
             z-index: 2;
             display: flex;
@@ -165,13 +185,13 @@ main {
 
 
         .header__nav {
-            clip-path: circle(0px at calc(100% - 31px) 33px);
+            clip-path: circle(0px at calc(100% - 24px) 25px);
             background: white;
             position: fixed;
             top: 0px;
             left: 0px; /* fixes two strange dots when menu is open */
             width: 100%;
-            height: 100%;
+            height: 100vh; // if 100%, than backdrop-filter produces a bug
             z-index: 1;
             transition-property: clip-path;
             transition-duration: .6s;
@@ -190,15 +210,11 @@ main {
                 display: grid;
                 grid-template-rows: repeat(4, 1fr);
                 row-gap: 32px;
-                
-                    li:first-child {
-                        margin-top: 0;
-                    }
             }
 
 
         #burger__checkbox:checked ~ .header__nav {
-            clip-path: circle(150% at calc(100% - 31px) 33px);
+            clip-path: circle(150% at calc(100% - 24px) 25px);
         }
 
 
@@ -227,7 +243,7 @@ main {
 // || main
 
 main {
-    margin-top: 48px;
+    margin-top: 96px;
     padding: 0 10px;
 }
 
@@ -436,6 +452,12 @@ main {
         .services__h2 {
             margin: 0 30px 40px;
         }
+
+        .cards__container--grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 10px;
+        }
         
         .card {
             padding: 49px 34px;
@@ -443,10 +465,6 @@ main {
             
             transition: box-shadow .3s;
         }
-        
-            .card:not(:last-child) {
-                margin-bottom: 20px;
-            }
         
         .card::before {
             font-family: $material;
@@ -764,9 +782,25 @@ footer {
     text-align: center;
 }
 
+.credits a {
+    transition: color .5s;
+}
+
+.credits :hover {
+    color: white;
+}
+
 
 @media screen and (min-width: 1250px) {
     
+    #home::before,
+    #services::before,
+    #our-works::before,
+    #clients::before,
+    #contact::before {
+        display: unset;
+    }
+
     h1 {
        font-size: 3rem; 
     }
@@ -786,6 +820,11 @@ footer {
     }
 
     // || Header
+
+    header {
+        position: initial;
+        margin: 0 auto;
+    }
 
             .header__logo {
                 font-size: 2.25rem;
@@ -921,8 +960,6 @@ footer {
     }
 
     .cards__container--grid {
-        display: grid;
-        column-gap: 10px;
         height: 422px;
         grid-template-columns: repeat(3, minmax(0, 340px));
     }

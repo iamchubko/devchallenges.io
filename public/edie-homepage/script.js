@@ -108,8 +108,6 @@ const evrtngElseArray = document.querySelectorAll('main currentInput, main a, fo
 const menuArray = document.querySelectorAll('header a');
 
 
-
-
 // functions
 function noTabMain() {
     for (let i=0; i < evrtngElseArray.length; i++) {
@@ -163,6 +161,7 @@ burgerBtn.addEventListener('click', function() {
     } else {
         noTabMain();
         body.classList.add('overflow');
+        
         yesTabMenu();
         
         // console.log('menu is open');
@@ -213,13 +212,31 @@ itemsToNavigate.forEach(e => {
 
 // clicking links in mobile closes the menu 
 // https://www.sitepoint.com/javascript-media-queries/
-const mq = window.matchMedia( "(min-width: 1024px" );
+const mq = window.matchMedia("(min-width: 1024px)");
 
 menuArray.forEach(e => {
     e.addEventListener('click', e => {
         if (!mq.matches) {
-            console.log('dammit');
             burgerBtn.click();
         }
     });
 });
+
+
+
+// when scroll up header is visible
+// https://www.w3schools.com/howto/howto_js_navbar_hide_scroll.asp
+
+let header = document.querySelector('header');
+let prevScrollPos = window.pageYOffset;
+
+window.onscroll = function() {
+    let currentScrollPos = window.pageYOffset;
+    if (prevScrollPos > currentScrollPos) {
+        header.style.top = '0';
+    } else {
+        header.style.top = '-50px';
+    }
+
+    prevScrollPos = currentScrollPos;
+}
