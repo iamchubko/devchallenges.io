@@ -384,10 +384,14 @@ main {
                 width: 71px;
                 height: 39px;
 
-                transition: color .2s, background-color .4s, width .2s, right .4s;
+                transition: color .2s, background-color .4s, width .2s, right .4s, transform .2s;
                 transition-timing-function: cubic-bezier(0.33, 1, 0.68, 1);
             }
 
+            .email-form__button:not(.email-form__button--sent):active {
+                transform: scale(0.95);
+            }
+            
                 :focus {
                     outline: 2px solid $blue;
                 }

@@ -44,7 +44,6 @@ sendEmailBtns.forEach(e => {
             // clear currentInput so placeholder is visible
             
             currentBtn.classList.add('email-form__button--sent');
-            currentBtn.disabled = true;
             
             currentInput.classList.add('email-form__input--sent');
             currentInput.disabled = true;
