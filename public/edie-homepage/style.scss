@@ -234,11 +234,9 @@ main {
     // #home
 
     .home__h2,
-    .h2-para,
-    .email-form--margin {
+    .h2-para {
         max-width: 366px;
     }
-
 
     .para--color--margin {
         margin: 0 30px;
@@ -276,20 +274,21 @@ main {
         font-weight: normal;
         margin: 33px 30px 0;
     }
-
+    
     .email-form {
-        color: $gray3;
-        font-size: 0.625rem;
-        display: block;
+        position: relative;
     }
     
-    .email-form--margin {
-        margin: 30px 30px 0;
-    }
+        .email-form--main {
+            max-width: 350px;
+            margin: 30px 30px 0;
+        }
 
-        .email-form__container {
-            margin-top: 5px;
-            position: relative;
+        .email-form__label {
+            color: $gray3;
+            font-size: 0.625rem;
+            display: block;
+            margin-bottom: 5px;
         }
 
             .email-form__input {
@@ -834,7 +833,7 @@ footer {
     .home__h1,
     .home__h2,
     .h2-para,
-    .email-form--margin {
+    .email-form--main {
         margin-left: 225px;
     }
 
@@ -867,12 +866,9 @@ footer {
         font-size: 1.125rem;
     }
 
-    .email-form {
+    .email-form__label {
         font-size: 0.875rem;
-    }
-
-    .email-form__container {
-        margin-top: 9px;
+        margin-bottom: 9px;
     }
 
         .email-form__input {
@@ -902,11 +898,6 @@ footer {
                 font-size: 2rem;
                 left: 9px;
             }
-
-
-    .email-form--margin {
-        max-width: 350px;
-    }
 
 
     #services,

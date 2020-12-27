@@ -67,7 +67,7 @@ sendEmailBtns.forEach(e => {
         } else if (currentInput.value === '' && currentBtn.className === 'email-form__button') {
             clearTimeout(removeError);
 
-            currentInput.placeholder = 'There\'s nothing to sent!';
+            currentInput.placeholder = 'There\'s nothing to send!';
             currentInput.classList.add('email-form__input--error');
             shakingBtn();
 
@@ -211,7 +211,7 @@ itemsToNavigate.forEach(e => {
 
 
 
-// clicking links in mobile menu makes menu close 
+// clicking links in mobile closes the menu 
 // https://www.sitepoint.com/javascript-media-queries/
 const mq = window.matchMedia( "(min-width: 1024px" );
 
