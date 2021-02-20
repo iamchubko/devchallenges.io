@@ -1,0 +1,175 @@
+:root {
+    --default: #E0E0E0;
+    --defualt-state: #AEAEAE;
+    --primary: #2962FF;
+    --primary-state: #0039CB;
+    --secondary: #455A64;
+    --secondary-state: #1C313A;
+    --danger: #D32F2F;
+    --danger-state: #9A0007;
+    
+    --text-dark: #3F3F3F;
+    --text-blue: #3D5AFE;
+    --text-disabled: #9E9E9E;
+
+    --bg-pale-blue: rgba(41, 98, 255, 0.1); 
+}
+
+button {
+    font: 500 0.875rem 'Noto Sans JP';
+    border: unset; /* reset */
+    padding: 8px 16px; 
+    border-radius: 6px;
+
+    transition: background-color .2s;
+}
+
+.default {
+    color: var(--text-dark);
+    background-color: var(--default);
+    box-shadow: 0px 2px 3px rgba(51, 51, 51, 0.2);
+}
+
+.default.hover-focus,
+.default:focus,
+.default:hover {
+    background-color: var(--defualt-state);
+}
+
+/* =========================================== */
+
+.primary {
+    background-color: var(--primary);
+    color: white;
+    box-shadow: 0px 2px 3px rgba(41, 98, 255, 0.2);;
+}
+
+.primary.hover-focus,
+.primary:focus,
+.primary:hover {
+    background-color: var(--primary-state);
+    box-shadow: 0px 2px 3px rgba(41, 98, 255, 0.2);;
+}
+
+/* =========================================== */
+
+.secondary {
+    background-color: var(--secondary);
+    color: white;
+    box-shadow: 0px 2px 3px rgba(69, 90, 100, 0.2);
+}
+.secondary.hover-focus,
+.secondary:focus,
+.secondary:hover {
+    background-color: var(--secondary-state);
+    box-shadow: 0px 2px 3px rgba(69, 90, 100, 0.2);
+}
+
+/* =========================================== */
+
+.danger {
+    background-color: var(--danger);
+    color: white;
+    box-shadow: 0px 2px 3px rgba(211, 47, 47, 0.2);
+}
+
+.danger.hover-focus,
+.danger:focus,
+.danger:hover {
+    background-color: var(--danger-state);
+    box-shadow: 0px 2px 3px rgba(211, 47, 47, 0.2);
+}
+
+/* outlined button */
+
+.outline {
+    border: 1px solid var(--text-blue);
+    background-color: transparent;
+    color: var(--text-blue);
+    box-shadow: unset;
+}
+
+.outline.hover-focus,
+.outline:hover,
+.outline:focus {
+    background-color: var(--bg-pale-blue);
+}
+
+/* =========================================== */
+
+/* text button */
+
+.text {
+    background-color: transparent;
+    border-color: transparent;
+    box-shadow: unset;
+    color: var(--text-blue);
+}
+
+.text.hover-focus,
+.text:hover,
+.text:focus {
+    background-color: var(--bg-pale-blue);
+}
+
+/* =========================================== */
+
+/* disableShadow */
+
+.disable-shadow {
+    color: white;
+    background-color: var(--text-blue);
+}
+
+/* =========================================== */
+
+/* disabled */
+
+:disabled {
+    background-color: var(--default);
+    color: var(--text-disabled);
+}
+
+.text:disabled {
+    background-color: transparent;
+} 
+
+/* =========================================== */
+
+/* icon position */
+
+.icon-start::before {
+    font-family: 'Material Icons Round';
+    font-size: 1rem;
+    content: 'add_shopping_cart';
+    margin-right: 10px;
+    display: inline-block;
+    position: relative;
+    top: 3px;
+}
+
+.icon-end::after {
+    font-family: 'Material Icons Round';
+    font-size: 1rem;
+    content: 'add_shopping_cart';
+    margin-left: 10px;
+    display: inline-block;
+    position: relative;
+    top: 3px;
+}
+
+ /* =========================================== */
+
+/* size */
+
+.sm {
+    padding: 6px 12px;
+}
+
+.md {
+    padding: 8px 16px;
+}
+
+.lg {
+    padding: 11px 22px;
+}

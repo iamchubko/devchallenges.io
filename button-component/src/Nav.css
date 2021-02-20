@@ -1,0 +1,35 @@
+nav {
+    flex: none;
+    width: 230px;
+    background-color: #FAFBFD;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+
+    padding: 40px 50px;
+    color: #090F31;
+}
+
+.logo {
+    font: 600 0.8125rem 'Poppins', sans-serif;
+}
+
+.logo span {
+    font-family: inherit;
+    font-weight: inherit;
+    color: #F7542E;
+}
+
+.nav-bar {
+    margin-top: 120px;
+    font-size: 0.875rem;
+    font-weight: 600;
+    list-style-type: none;
+}
+
+@media (max-width: 600px) {
+    nav {
+        width: 100px;
+    }
+}
+

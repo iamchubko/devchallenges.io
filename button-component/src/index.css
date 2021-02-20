@@ -1,0 +1,56 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+#wrapper {
+  display: flex;
+}
+
+body {
+  font-family: 'Noto Sans JP', sans-serif;
+}  
+
+main {
+  padding-top: 50px;
+  padding-left: 320px;
+}
+
+h1 {
+  color: #4f4f4f;
+  font: 500 24px 'Poppins', sans-serif;
+  margin-bottom: 28px;
+}
+
+figure {
+  display: inline-block;
+  min-width: 235px;
+  margin-bottom: 45px;
+}
+
+figcaption {
+  font-family: 'Ubuntu Mono', monospace;
+  font-size: 0.75rem;
+  color: #333333;
+
+  margin-bottom: 12px;
+  margin-right: 40px;
+}
+
+  figcaption.hover-focus {
+    color: #828282;
+  }
+
+a {
+  text-decoration: none;
+}
+
+  :visited {
+    color: inherit;
+  }
+
+footer {
+  color: #828282;
+  font: normal 0.75rem 'Ubunto Mono', monospace;
+}
