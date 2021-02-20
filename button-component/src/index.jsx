@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
-import Nav from './Nav';
+import Nav from './components/Nav';
 
 ReactDOM.render(
     <div id="wrapper">

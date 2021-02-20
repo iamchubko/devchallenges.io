@@ -8,6 +8,8 @@ nav {
 
     padding: 40px 50px;
     color: #090F31;
+
+    transition: width 0.2s;
 }
 
 .logo {
@@ -27,9 +29,10 @@ nav {
     list-style-type: none;
 }
 
-@media (max-width: 600px) {
+@media (max-width: 800px) {
     nav {
-        width: 100px;
+        position: absolute;
+        left: -250px
     }
 }
 

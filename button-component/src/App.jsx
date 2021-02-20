@@ -129,12 +129,13 @@ export default function App() {
           desc={''}
         />
       </div>
+
       <footer>
-        <div>
+        <div className='ref'>
           Icons: <a href="https://material.io/resources/icons/?style=round">https://material.io/resources/icons/?style=round</a>
         </div>
-        <div>
-          Kirill Chubko @ DevChallenges.io
+        <div className='credits'>
+          <a href="https://github.com/iamchubko" target="_blank">Kirill Chubko</a> @ <a href="https://devchallenges.io" target="_blank">DevChallenges.io</a>
         </div>
       </footer>
     </main>
