@@ -243,7 +243,7 @@ main {
 // || main
 
 main {
-    margin-top: 96px;
+    margin-top: 6rem; // from top of the viewport
     padding: 0 10px;
 }
 
@@ -251,7 +251,7 @@ main {
 
     .home__h2,
     .h2-para {
-        max-width: 366px;
+        max-width: 22.875rem;
     }
 
     .para--color--margin {
@@ -296,7 +296,7 @@ main {
     }
     
         .email-form--main {
-            max-width: 350px;
+            max-width: 21.875rem;
             margin: 30px 30px 0;
         }
 
@@ -308,15 +308,17 @@ main {
         }
 
             .email-form__input {
+                appearance: none;
                 background-color: $gray6;
                 border-radius: 12px;
                 color: $gray1;
                 border: unset;
                 padding: 4px 0;
-                padding-left: 19px;
-                padding-right: 90px;
-                line-height: 39.5px;
+                padding-left: 1.1875rem;
+                padding-right: 5.625rem;
+                line-height: 2.4688rem;
                 font-family: inherit;
+                font-size: 1rem;
                 width: 100%;
             }
             
@@ -326,14 +328,14 @@ main {
 
             @keyframes input--sent {
                 99% {
-                    padding-left: 19px;
-                    padding-right: calc(100% - 19px);
+                    padding-left: 1.1875rem;
+                    padding-right: calc(100% - 1.1875rem);
                     
                 }
                 
                 100% {
-                    padding-left: 50px;
-                    padding-right: 19px;
+                    padding-left: 3.125rem;
+                    padding-right: 1.1875rem;
                 }
             }
             
@@ -350,7 +352,7 @@ main {
                     // starting point for placeholder transition
                     text-align: center;
                     color: $gray6;
-                    transform: translateX(20px);
+                    transform: translateX(1.25rem);
                     transition-duration: .3s;
                 }
                 
@@ -378,18 +380,14 @@ main {
                 position: absolute;
                 right: 0px;
                 margin: 4px;
-                padding: 10px 0;
+                padding: 0.625rem 0;
                 border-radius: 12px;
                 cursor: default;
-                width: 71px;
-                height: 39px;
+                width: 4.4375rem;
+                height: 2.4375rem;
 
                 transition: color .2s, background-color .4s, width .2s, right .4s, transform .2s;
                 transition-timing-function: cubic-bezier(0.33, 1, 0.68, 1);
-            }
-
-            .email-form__button:not(.email-form__button--sent):active {
-                transform: scale(0.95);
             }
             
                 :focus {
@@ -401,8 +399,8 @@ main {
                         content: 'check_circle_outline';
                         font-size: 1.5rem;
                         position: absolute;
-                        top: 8px;
-                        left: 7px;
+                        top: 0.5rem;
+                        left: 0.4375rem;
                         color: $gray6;
 
                         opacity: 0;
@@ -416,10 +414,10 @@ main {
                     }
                 
                 .email-form__button--sent {
-                    right: calc(100% - 47px);
+                    right: calc(100% - 2.9375rem);
                     background-color: $green;
                     color: $green;
-                    width: 39px;
+                    width: 2.4375rem;
                 }
 
                     .email-form__button--sent::before {
@@ -436,11 +434,11 @@ main {
 
                 @keyframes btn--error {
                     25% {
-                        transform: translateX(-2px);
+                        transform: translateX(-0.125rem);
                     }
                     
                     75% {
-                        transform: translateX(2px);
+                        transform: translateX(0.125rem);
                     }
                 }
 
@@ -451,7 +449,7 @@ main {
                 // https://stackoverflow.com/questions/3123063/what-does-moz-document-url-prefix-do
                 @-moz-document url-prefix() { 
                     .email-form__button::before {
-                        top: 6px;
+                        top: 0.375rem;
                     }
                 }
 
@@ -483,8 +481,8 @@ main {
         
         .card::before {
             font-family: $material;
-            width: 67px;
-            height: 67px; 
+            width: 4.1875rem;
+            height: 4.1875rem; 
             border-radius: 16px;
             display: flex;
             justify-content: center;
@@ -618,6 +616,7 @@ main {
         font-weight: 500;
         font-size: 1.125rem;
         margin-top: 35px;
+        padding-right: 0.625rem;
     }
 
         .examples__link::after {
@@ -700,7 +699,7 @@ main {
     .media-object {
         margin-top: 27px;
         display: grid;
-        grid-template-columns: 82px 1fr;
+        grid-template-columns: 5.125rem 1fr;
         grid-template-rows: 1fr 1fr;
         column-gap: 30px;
 
@@ -880,7 +879,7 @@ footer {
     // || Main
 
     main {
-        margin-top: 96px;
+        margin-top: 6rem;
     }
 
     .para--color--margin,
@@ -899,7 +898,7 @@ footer {
     }
 
     .home__h1 {
-        max-width: 540px;
+        max-width: 33.75rem;
         margin-top: 16px;
     }
     
@@ -927,30 +926,30 @@ footer {
 
         .email-form__input {
             font-size: 1.125rem;
-            line-height: 49.5px;
-            padding-right: 110px;
+            line-height: 3.0938rem;
+            padding-right: 6.875rem;
         }
 
         .email-form__input--sent {
-            padding-left: 62px;
-            padding-right: calc(100% - 62px);
+            padding-left: 3.875rem;
+            padding-right: calc(100% - 3.875rem);
         }
 
             .email-form__button {
                 font-size: 1.125rem;
-                padding: 11px 0;
-                width: 94px;
-                height: 49px;
+                padding: 0.6875rem 0;
+                width: 5.875rem;
+                height: 3.0625rem;
             }
 
             .email-form__button--sent {
-                right: calc(100% - 57px);
-                width: 49px;
+                right: calc(100% - 3.5625rem);
+                width: 3.0625rem;
             }
             
             .email-form__button::before {
                 font-size: 2rem;
-                left: 9px;
+                left: 0.5625rem;
             }
 
 
@@ -975,7 +974,7 @@ footer {
     }
 
     .cards__container--grid {
-        height: 422px;
+        height: 26.375rem;
         grid-template-columns: repeat(3, minmax(0, 340px));
     }
 
@@ -1004,6 +1003,8 @@ footer {
 
     #our-works {
         margin-top: 200px;
+        display: flex;
+        flex-direction: column;
     }
         
     .examples__h2 {
@@ -1037,8 +1038,8 @@ footer {
 
     .examples__link {
         margin-top: unset;
+        margin-left: auto;
         font-size: 1.5rem;
-        display: block;
         text-align: right;
         transform: translateY(-100%);
     }
@@ -1114,8 +1115,9 @@ footer {
 
     .footer__wrapper {
         display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        grid-template-rows: max-content;
+        grid-template-columns: 1fr max-content 2fr;
+        column-gap: 25px;
+        grid-template-rows: max-content 1fr;
     }
 
     .footer__wrapper > * {
@@ -1140,6 +1142,8 @@ footer {
         .email-form--footer {
             grid-column: 3;
             grid-row: 1 / span 2;
+            max-width: 21.875rem;
+            justify-self: end;
         }
         
         .credits {

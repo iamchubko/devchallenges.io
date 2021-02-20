@@ -7,7 +7,7 @@ let showPlaceholder;
 let removeError;
 let removeValues;
 
-const forms = document.querySelectorAll('.email-form__container');
+const forms = document.querySelectorAll('.email-form');
 
 
 // prevent form from sending itself and reloading the page
@@ -212,11 +212,11 @@ itemsToNavigate.forEach(e => {
 
 // clicking links in mobile closes the menu 
 // https://www.sitepoint.com/javascript-media-queries/
-const mq = window.matchMedia("(min-width: 1024px)");
+const mediaQuery = window.matchMedia("(min-width: 1024px)");
 
 menuArray.forEach(e => {
     e.addEventListener('click', e => {
-        if (!mq.matches) {
+        if (!mediaQuery.matches) {
             burgerBtn.click();
         }
     });
@@ -227,16 +227,25 @@ menuArray.forEach(e => {
 // when scroll up header is visible
 // https://www.w3schools.com/howto/howto_js_navbar_hide_scroll.asp
 
-let header = document.querySelector('header');
+const header = document.querySelector('header');
 let prevScrollPos = window.pageYOffset;
+let currentScrollPos;
+let heightHeader;
 
 window.onscroll = function() {
-    let currentScrollPos = window.pageYOffset;
-    if (prevScrollPos > currentScrollPos) {
-        header.style.top = '0';
-    } else {
-        header.style.top = '-50px';
-    }
+    if (!checkbox.checked && !mediaQuery.matches) { // if mobile view and menu closed
 
-    prevScrollPos = currentScrollPos;
+        currentScrollPos = window.pageYOffset;
+        headerHeight = header.offsetHeight; // gets current height of the header
+        
+        if (currentScrollPos > headerHeight) {
+            if (prevScrollPos > currentScrollPos) {
+                header.style.top = '0';
+            } else {
+                header.style.top = '-' + headerHeight + 'px';
+            }
+            
+            prevScrollPos = currentScrollPos;
+        }
+    }
 }
