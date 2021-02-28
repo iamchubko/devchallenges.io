@@ -3,11 +3,11 @@
 </div>
 
 
-This is my solutions for DevChallenges so far.
+This is my solutions for DevChallenges so far. Each folder in the repo is an independent project.
 
 ## Solutions
 
-You can view them live:
+You can see my solutions live:
 - [404 Not Found](https://devchallprojects.web.app/404-not-found/)
 - [Interior Consultant](https://devchallprojects.web.app/interior-consultant/)
 - [Recipe Page](https://devchallprojects.web.app/recipe-page/)
