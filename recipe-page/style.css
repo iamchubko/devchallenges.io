@@ -40,7 +40,7 @@ h1 {
 h1 + p {
   font: italic 500 0.75rem "Montserrat", sans-serif;
   color: #4f4f4f;
-  background: no-repeat 0px 3.5px url(6dots.svg);
+  background: no-repeat 0px 3.5px url(images/icons/6dots.svg);
   padding-left: 24px;
   margin-top: 12px;
   margin-right: 24px;
@@ -211,7 +211,7 @@ i {
 }
 
 .md_checkbox .md_checkbox__tick::after {
-  content: url("done.svg");
+  content: url("images/icons/done.svg");
   position: absolute;
   top: .125rem;
   width: 1.313rem;

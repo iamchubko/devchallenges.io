@@ -776,15 +776,15 @@ footer {
         }
 
         .social-media__link:first-child::before {
-            content: url(instagram.svg);
+            content: url(images/icons/instagram.svg);
         }
 
         .social-media__link:nth-of-type(2)::before {
-            content: url(linkedin.svg);
+            content: url(images/icons/linkedin.svg);
         }
 
         .social-media__link:last-child::before {
-            content: url(twitter.svg);
+            content: url(images/icons/twitter.svg);
         }
 
 .credits {
