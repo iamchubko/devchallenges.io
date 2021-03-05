@@ -1,15 +1,14 @@
 <div align="center">
-  <img src='https://user-images.githubusercontent.com/56153711/110121746-d595d200-7dcf-11eb-96e1-82316aff4040.png' alt='devchallenges-projects-preview'>
+  <img src='https://user-images.githubusercontent.com/56153711/110128457-dd597480-7dd7-11eb-9718-8f4949a13c9e.png' alt='devchallenges-projects-preview'>
 </div>
-
-
-This is my solutions for DevChallenges so far. Each folder in the repo is an independent project.
 
 ## Overview
 
-All solutions deployed under the same project on Firebase. Below I put the list of solutions I built. The order will be from the latest to the old ones.
+This repository is all about my solutions to DevChallenge. Each folder represents a solution. Below is the list of, you guest it, solutions with notes about it (if project deserves). The order is from the latest to the old ones.
 
-All projects are responsive, mostly built with SCSS and JS. I'll note if project stand out from the others with something.
+All projects are responsive, mostly built with SCSS and JS. The description next to the project will tell if otherwise.
+
+Each solution contains readme.md file with a short description in its own folder.
 
 ## Solutions
 
