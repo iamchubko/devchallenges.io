@@ -1,20 +1,27 @@
 <div align="center">
-  <img src='https://user-images.githubusercontent.com/56153711/109431923-eafaad00-7a19-11eb-97fa-0f5802b591fd.png' alt='devchallenges-projects-preview'>
+  <img src='https://user-images.githubusercontent.com/56153711/110121746-d595d200-7dcf-11eb-96e1-82316aff4040.png' alt='devchallenges-projects-preview'>
 </div>
 
 
 This is my solutions for DevChallenges so far. Each folder in the repo is an independent project.
 
+## Overview
+
+All solutions deployed under the same project on Firebase. Below I put the list of solutions I built. The order will be from the latest to the old ones.
+
+All projects are responsive, mostly built with SCSS and JS. I'll note if project stand out from the others with something.
+
 ## Solutions
 
 You can see my solutions live:
-- [404 Not Found](https://devchallprojects.web.app/404-not-found/)
-- [Interior Consultant](https://devchallprojects.web.app/interior-consultant/)
-- [Recipe Page](https://devchallprojects.web.app/recipe-page/)
+- [Quote Generator](https://devchallprojects.web.app/button-component/quotes-generator) / React, API
+- [Button Component](https://devchallprojects.web.app/button-component/) / React
+- [Edie Homepage](https://devchallprojects.web.app/edie-homepage/) / Landing page with animation exercise on input fields
+- [My Gallery](https://devchallprojects.web.app/my-gallery/) / Great exercise with hover animations
 - [My Team Page](https://devchallprojects.web.app/my-team-page/)
-- [My Gallery](https://devchallprojects.web.app/my-gallery/)
-- [Edie Homepage](https://devchallprojects.web.app/edie-homepage/)
-- [Button Component](https://devchallprojects.web.app/button-component/)
+- [Recipe Page](https://devchallprojects.web.app/recipe-page/) / Recipe page I could comfortably cook with
+- [Interior Consultant](https://devchallprojects.web.app/interior-consultant/)
+- [404 Not Found](https://devchallprojects.web.app/404-not-found/)
 
 
 ## How To Use

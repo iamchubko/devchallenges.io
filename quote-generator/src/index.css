@@ -1,0 +1,46 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Raleway', sans-serif;
+  padding: 25px 40px 0;
+  margin: 0 auto;
+  height: inherit;
+  max-width: 1320px;
+
+  display: flex;
+  flex-direction: column;
+}
+
+html {
+  height: 100%;
+  overflow-y: scroll; /* scrollbar always there; no layout shifts */
+}
+
+#root {
+  margin-bottom: auto;
+}
+
+footer {
+  color: #828282;
+  font: 500 0.875rem 'Montserrat', sans-serif;
+  margin: 0 auto;
+  padding-bottom: 24px;
+}
+
+footer a {
+  text-decoration: none;
+}
+
+footer a,
+footer a:visited {
+  color: #828282;
+}
+
+.footer__github {
+  font-weight: 700;
+  text-decoration: underline;
+}

@@ -1,0 +1,217 @@
+main {
+	display: flex;
+	flex-direction: column;
+}
+
+
+	button { /* resets styles */
+		background-color: transparent;
+		color: #4f4f4f;
+		border: unset;
+		font-family: 'Raleway', sans-serif;
+	}
+
+		#random {
+			display: flex;
+			margin-left: auto;
+			padding: 5px;
+
+			font-weight: 500;
+			font-size: 1.125rem;
+
+			transition: color 100ms;
+		}
+
+		:focus {
+			outline-color: #f7df94;
+		}
+
+		#random::after { /* circle icon */
+			font-family: 'Material Icons';
+			font-size: 1.375rem;
+			content: 'autorenew';
+			display: inline-block;
+			margin-left: 8px;
+
+		}
+		
+		#random.spin::after {
+			transform: rotate(180deg);
+			transition: transform 500ms; /* spins only in one way */
+		}
+
+			#random:hover {
+				color: #333333;
+			}
+
+.content {
+	max-width: 725px;
+	margin: 45px auto 290px;
+}
+
+	blockquote {
+		margin-top: 140px;
+		padding-left: 100px;
+		border-left: 8px solid #f7df94;
+		width: 720px; /* no layout shifts when quote is too small */
+	}
+	
+	blockquote:first-of-type {
+		margin-top: 182px; /* main margin + height of the header with offset */
+	}
+
+	.quote {
+		font-weight: 500;
+		line-height: 120%;
+		font-size: 2.25rem;
+		color: black;
+	}
+
+	.quote::before {
+		content: open-quote;
+	}
+	.quote::after {
+		content: close-quote;
+	}
+
+/* === Button for more quotes === */
+
+#more-quotes { /* button */
+	text-align: left; /* resets default aligning */
+	margin-top: 110px;
+	margin-left: 78px;
+	margin-bottom: -80px; /* offsets distance between button and footer */
+	padding: 50px 0 50px 30px;
+	width: calc(100% - 78px);
+	position: relative;
+
+	transition: background-color 150ms;
+}
+
+#more-quotes::after {
+	font-family: 'Material Icons';
+	font-size: 2rem;
+	position: absolute;
+	right: 38px;
+	top: calc(50% - 16px); /* - half height of the element */
+}
+
+#more-quotes:hover::after {
+	content: 'arrow_right_alt';
+	color: #f2f2f2;
+}
+
+	#more-quotes:hover {
+		background-color: #333333;
+	}
+
+	.more-quotes__author {
+		color: #4f4f4f;
+		font-weight: 700;
+		font-size: 1.5rem;
+		display: block;
+		margin-bottom: 8px;
+		
+		transition: color 150ms;
+	}
+	
+	#more-quotes:hover .more-quotes__author {
+		color: #f2f2f2;
+	}
+
+	.more-quotes__genre {
+		color: #828282;
+		font-weight: 500;
+		font-size: 0.875rem;
+	}
+
+.author {
+	font-size: 2.25rem;
+	font-weight: 700;
+	color: #333333;
+	margin-bottom: -42px; /* offsets its own height; no layout changes when appears */
+}
+
+
+@media screen and (max-width: 800px) {
+	.content {
+		margin: 0px 0px 150px; /* decenters when quote is too small */
+	}
+
+	blockquote:first-of-type {
+		margin-top: 110px;
+	}
+
+	blockquote {
+		margin-top: 70px;
+		padding-left: 50px;
+		width: unset;
+	}
+
+	#more-quotes {
+		margin-left: 28px; /* padding-left on quote + border - padding-left on button */
+		width: calc(100% - 56px); /* - margin-left */
+	}
+
+	#more-quotes::after { /* always showing */
+		content: 'arrow_right_alt';
+		color: #828282;
+	}
+
+	#random {
+		position: fixed;
+		bottom: 50px;
+		background-color: white;
+		padding: 15px 25px;
+		border: 1px solid #4f4f4f;
+		left: calc(50% - 74px); /* - half width of the button */
+		z-index: 1;
+	}
+}
+
+
+@media screen and (max-width: 600px) {
+	body {
+		padding: 15px 15px 0;
+	}
+
+	blockquote:first-of-type {
+		margin-top: 70px;
+	}
+
+	blockquote {
+		margin-top: 40px;
+		padding-left: 30px;
+	}
+
+		.quote {
+			font-size: 1.5rem;
+		}
+
+	.author {
+		font-size: 1.5rem;
+		margin-bottom: -29px; /* offsets its own height; no layout changes when appears */
+	}
+
+
+	#more-quotes {
+		padding: 25px 0 25px 20px;
+		margin-top: 40px;
+		margin-left: 18px; /* padding-left on quote + border - padding-left on button */
+		width: calc(100% - 36px); /* - margin left */
+	}
+
+	.more-quotes__author {
+		font-size: 1.125rem;
+	}
+	
+	.more-quotes__genre {
+		font-size: 0.75rem;
+	}
+
+	#more-quotes::after {
+		font-size: 1.5rem;
+		right: 10px;
+		top: calc(50% - 12px);
+	}
+}
