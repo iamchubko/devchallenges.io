@@ -1,0 +1,13 @@
+.header {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.nextBtn {
+  padding: 15px 37px;
+  background-color: #F9A826;
+  border-radius: 12px;
+  border: unset;
+  color: white;
+  font-size: 18px;
+}
