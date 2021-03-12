@@ -2,8 +2,13 @@ html,
 body {
   padding: 0;
   margin: 0;
+  height: 100%;
   font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+}
+
+body {
+  background-color: rgb(26, 30, 43);
 }
 
 a {
@@ -17,4 +22,9 @@ a {
 
 button {
   display: block;
+}
+
+#__next {
+  height: inherit;
+  display: flex;
 }

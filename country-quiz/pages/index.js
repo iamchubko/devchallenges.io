@@ -5,10 +5,9 @@ import Button from '../components/Button'
 
 // this is done on a server-side
 export async function getStaticProps() {
-  const url = 'https://restcountries.eu/rest/v2/'
-  const countryCapital = 'all?fields=name;capital;'
-  const res = await fetch(url + countryCapital)
-  const data = await res.json()
+  const response = await fetch('https://restcountries.eu/rest/v2/all?fields=name;capital;flag;languages;')
+  const data = await response.json()
+
   // https://www.geeksforgeeks.org/how-to-implement-a-filter-for-objects-in-javascript/
   const filteredData = data.filter(country => { // if curly braces, use `return`
     const regExp = /^([a-z-,. '()A-Z]{0,})$/;
@@ -25,21 +24,27 @@ export async function getStaticProps() {
   
   return {
     props: {
-      filteredData // list of 124 objects with a country and its capital
+      filteredData // list of 124 objects with a country, capital and flag
     }
   }
 }
 
 export default function Home({ filteredData }) {
-  // console.log(filteredData) // checks if an object is working
-
-  const [randomCapital, setRandomCapital] = useState({}) // object with country and capital
+  // console.log(filteredData) // checks if an object is passed correctly
+  
+  const [isCapitalQuestion, setIsCapitalQuestion] = useState(false)
+      
+  const [randomObject, setRandomObject] = useState({}) // object with country, capital and flag
   const [shuffledAnswers, setShuffledAnswers] = useState([]) // array to display as answers
 
   function generateQuiz() {
-    // picks a random object with a country and its capital
+    // https://stackoverflow.com/a/36756480/13285338
+    const randomBoolean = Math.random() < 0.5 // generates random boolean
+    setIsCapitalQuestion(randomBoolean)
+    
+    // picks a random object w/ country, capital and flag
     const pickedObject = filteredData[Math.floor(Math.random() * filteredData.length)]
-    setRandomCapital(pickedObject) // state for a question (it doesn't set until effect is over)
+    setRandomObject(pickedObject) // state for a question (it doesn't set until effect is over)
     console.log(pickedObject)
 
     let answersList = [pickedObject.name]; // sets up an array with a randomly picked country
@@ -52,6 +57,7 @@ export default function Home({ filteredData }) {
     console.log(answersList) // array with 4 variants of countries (1 is true)
 
     // https://flaviocopes.com/how-to-shuffle-array-javascript/
+    // argument is a function that generates  a number > or < than 0; sorts accordingly 
     setShuffledAnswers(answersList.sort(() => Math.random() - 0.5))
   }
   // console.log(shuffledAnswers) // shuffled array with 4 variants
@@ -59,6 +65,18 @@ export default function Home({ filteredData }) {
   useEffect(() => { // runs only on mounting
     generateQuiz()
   }, [])
+
+  const capitalPara = (
+    <p className={styles.question}>{randomObject.capital} is the capital of</p>
+  )
+    
+  const flagPara = (
+    <>
+      <img src={randomObject.flag} className={styles.flag} alt={`Didn't you think it would be that easy, huh?`}></img>
+      <p className={styles.question}>Which country does this flag belong to?</p>
+    </>
+  )
+
 
   const [isAnswered, setIsAnswered] = useState(false) // boolean to display 'next' button
   // console.log(isAnswered)
@@ -80,18 +98,18 @@ export default function Home({ filteredData }) {
         <link rel="icon" href="/devchallenges.png" />
       </Head>
 
-      <main>
-        <p className={styles.header}>{randomCapital.capital} is the capital of</p>
+      <main className={styles.wrapper}>
+        {isCapitalQuestion ? capitalPara : flagPara}
 
         {shuffledAnswers.map((country, i) => 
           <Button
             country={country}
-            inQuestion={randomCapital}
+            inQuestion={randomObject}
             isAnswered={(value) => setIsAnswered(value)}
             isAnswerPicked={isAnswered}
             key={i}
           />
-        )} {/* passes `onClick` w/ an argument (to store value in `isAnswered`) as a prop */}
+        )}
 
         {isAnswered ? nextBtn : null}
       </main>
