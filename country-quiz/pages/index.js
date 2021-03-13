@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react'
 import Head from 'next/head'
 import styles from '../styles/Home.module.css'
 import Button from '../components/Button'
+import StartScreen from '../components/StartScreen'
 
 // this is done on a server-side
 export async function getStaticProps() {
@@ -31,19 +32,34 @@ export async function getStaticProps() {
 
 export default function Home({ filteredData }) {
   // console.log(filteredData) // checks if an object is passed correctly
-  
+  const [isMainScreen, setIsMainScreen] = useState(true)
+
+  const [mode, setMode] = useState([]) // possibly multiple values
+  function setupGame(quantity, mode) {
+    setMode(mode)
+  }
+
+
   const [isCapitalQuestion, setIsCapitalQuestion] = useState(false)
       
   const [randomObject, setRandomObject] = useState({}) // object with country, capital and flag
   const [shuffledAnswers, setShuffledAnswers] = useState([]) // array to display as answers
 
   function generateQuiz() {
-    // https://stackoverflow.com/a/36756480/13285338
-    const randomBoolean = Math.random() < 0.5 // generates random boolean
-    setIsCapitalQuestion(randomBoolean)
+    if (mode.includes('capital') && mode.includes('flag')) {
+      // https://stackoverflow.com/a/36756480/13285338
+      const randomBoolean = Math.random() < 0.5 // generates random boolean
+      setIsCapitalQuestion(randomBoolean)
+    } else if (mode.includes('capital')) {
+      setIsCapitalQuestion(true)
+    } else if (mode.includes('flag')) {
+      setIsCapitalQuestion(false)
+    }
     
     // picks a random object w/ country, capital and flag
-    const pickedObject = filteredData[Math.floor(Math.random() * filteredData.length)]
+    const randomIndex = Math.floor(Math.random() * filteredData.length)
+    const pickedObject = filteredData[randomIndex]
+    filteredData.splice(randomIndex, 1) // removes picked object from array
     setRandomObject(pickedObject) // state for a question (it doesn't set until effect is over)
     console.log(pickedObject)
 
@@ -64,7 +80,7 @@ export default function Home({ filteredData }) {
 
   useEffect(() => { // runs only on mounting
     generateQuiz()
-  }, [])
+  }, [isMainScreen]) // changes after starting a game (button in the menu)
 
   const capitalPara = (
     <p className={styles.question}>{randomObject.capital} is the capital of</p>
@@ -72,7 +88,7 @@ export default function Home({ filteredData }) {
     
   const flagPara = (
     <>
-      <img src={randomObject.flag} className={styles.flag} alt={`Didn't you think it would be that easy, huh?`}></img>
+      <img src={randomObject.flag} className={styles.flag} alt={`Didn't you think it would be that easy, huh?`} />
       <p className={styles.question}>Which country does this flag belong to?</p>
     </>
   )
@@ -91,6 +107,24 @@ export default function Home({ filteredData }) {
     >Next</button>
   )
 
+  const quizCard = (
+    <>
+      {isCapitalQuestion ? capitalPara : flagPara}
+
+      {shuffledAnswers.map((country, i) => 
+        <Button
+          country={country}
+          inQuestion={randomObject}
+          isAnswered={(value) => setIsAnswered(value)}
+          isAnswerPicked={isAnswered}
+          key={i}
+        />
+      )}
+
+      {isAnswered ? nextBtn : null}
+    </>
+  )
+
   return (
     <>
       <Head>
@@ -99,19 +133,14 @@ export default function Home({ filteredData }) {
       </Head>
 
       <main className={styles.wrapper}>
-        {isCapitalQuestion ? capitalPara : flagPara}
-
-        {shuffledAnswers.map((country, i) => 
-          <Button
-            country={country}
-            inQuestion={randomObject}
-            isAnswered={(value) => setIsAnswered(value)}
-            isAnswerPicked={isAnswered}
-            key={i}
-          />
-        )}
-
-        {isAnswered ? nextBtn : null}
+        {isMainScreen
+          ? <StartScreen
+              isSubmited={(boolean, quantity, mode) => {
+                setIsMainScreen(boolean)
+                setupGame(quantity, mode)
+              }}
+            /> 
+          : quizCard}
       </main>
     </>
   )
