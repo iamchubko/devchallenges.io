@@ -3,21 +3,22 @@ import { useState, useEffect } from 'react'
 
 export default function Button(props) {
 	const [btnClass, setBtnClass] = useState('')
+	const [correctCount, setCorrectCount] = useState(0)
 
 	useEffect(function setClassForCorrectAnswer() {
-		// loops through all instances of buttons, truthy for one with corresponding country
-		if (props.isAnswerPicked && props.inQuestion.name === props.country) {
+		// loops through all instances of buttons; truthy for one with corresponding country
+		if (props.isAnswerPicked && props.correctAnswer.name === props.country) {
 			setBtnClass(styles.true)
 		} else if (!props.isAnswerPicked && btnClass !== '') {
 			setBtnClass('')
 		}
-		// console.log('this nigga should run 4 times in a row ' + props.isAnswerPicked)
 	}, [props.isAnswerPicked])
 
 	function handleClick() {
-		if (props.inQuestion.name === props.country) {
+		if (props.correctAnswer.name === props.country) {
 			setBtnClass(styles.true)
-		} else if (props.inQuestion.name !== props.country) {
+			setCorrectCount(correctCount + 1)
+		} else if (props.correctAnswer.name !== props.country) {
 			setBtnClass(styles.false)
 		}
 
@@ -27,7 +28,11 @@ export default function Button(props) {
 	return (
 		<button
 			className={`${styles.initial} ${btnClass}`}
-			onClick={() => handleClick()}
+			onClick={() => {
+				handleClick()
+				console.log(correctCount)
+				props.correctCount(correctCount)
+			}}
 			disabled={props.isAnswerPicked}
 		>
 			{props.country}

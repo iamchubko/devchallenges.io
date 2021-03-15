@@ -1,8 +1,10 @@
 import { useState, useEffect } from 'react'
+import styles from '../styles/QuizScreen.module.css'
+
 import Head from 'next/head'
-import styles from '../styles/Home.module.css'
-import Button from '../components/Button'
 import StartScreen from '../components/StartScreen'
+import ResultsScreen from '../components/ResultsScreen'
+import QuizScreen from '../components/QuizScreen'
 
 // this is done on a server-side
 export async function getStaticProps() {
@@ -15,14 +17,14 @@ export async function getStaticProps() {
     // ^ $ - beginning and end of a string. if smth doesn't match, whole test is falsy
     // {0,} - matches 0 or more. if omit, rules in brackets would be only for one char
 
-    if ( regExp.test(country.name) && regExp.test(country.capital) && country.capital !== '' ) {
+    if (country.capital !== '') {
       return true
     } else {
       return false
     }
   })
 
-  
+
   return {
     props: {
       filteredData // list of 124 objects with a country, capital and flag
@@ -31,38 +33,17 @@ export async function getStaticProps() {
 }
 
 export default function Home({ filteredData }) {
-  // console.log(filteredData) // checks if an object is passed correctly
-  const [isMainScreen, setIsMainScreen] = useState(true)
-
-  const [mode, setMode] = useState([]) // possibly multiple values
-  function setupGame(quantity, mode) {
-    setMode(mode)
-  }
-
-
-  const [isCapitalQuestion, setIsCapitalQuestion] = useState(false)
-      
-  const [randomObject, setRandomObject] = useState({}) // object with country, capital and flag
+  const [mainObject, setMainObject] = useState({}) // object with country, capital and flag
   const [shuffledAnswers, setShuffledAnswers] = useState([]) // array to display as answers
 
-  function generateQuiz() {
-    if (mode.includes('capital') && mode.includes('flag')) {
-      // https://stackoverflow.com/a/36756480/13285338
-      const randomBoolean = Math.random() < 0.5 // generates random boolean
-      setIsCapitalQuestion(randomBoolean)
-    } else if (mode.includes('capital')) {
-      setIsCapitalQuestion(true)
-    } else if (mode.includes('flag')) {
-      setIsCapitalQuestion(false)
-    }
-    
+  function generateObjects() {
     // picks a random object w/ country, capital and flag
     const randomIndex = Math.floor(Math.random() * filteredData.length)
     const pickedObject = filteredData[randomIndex]
     filteredData.splice(randomIndex, 1) // removes picked object from array
-    setRandomObject(pickedObject) // state for a question (it doesn't set until effect is over)
     console.log(pickedObject)
-
+    setMainObject(pickedObject) // state for a question (it doesn't set until effect is over)
+    
     let answersList = [pickedObject.name]; // sets up an array with a randomly picked country
     
     for (let i = 0; i < 3; i++) { // a loop to add 3 more variants to the quiz
@@ -71,76 +52,70 @@ export default function Home({ filteredData }) {
     }
     
     console.log(answersList) // array with 4 variants of countries (1 is true)
-
+    
     // https://flaviocopes.com/how-to-shuffle-array-javascript/
     // argument is a function that generates  a number > or < than 0; sorts accordingly 
     setShuffledAnswers(answersList.sort(() => Math.random() - 0.5))
   }
-  // console.log(shuffledAnswers) // shuffled array with 4 variants
-
-  useEffect(() => { // runs only on mounting
-    generateQuiz()
-  }, [isMainScreen]) // changes after starting a game (button in the menu)
-
-  const capitalPara = (
-    <p className={styles.question}>{randomObject.capital} is the capital of</p>
-  )
-    
-  const flagPara = (
-    <>
-      <img src={randomObject.flag} className={styles.flag} alt={`Didn't you think it would be that easy, huh?`} />
-      <p className={styles.question}>Which country does this flag belong to?</p>
-    </>
-  )
+  console.log(shuffledAnswers)
 
 
-  const [isAnswered, setIsAnswered] = useState(false) // boolean to display 'next' button
-  // console.log(isAnswered)
+  const [currentScreen, setCurrentScreen] = useState('start')
+  const [currentScreenElement, setCurrentScreenElement] = useState()
 
-  const nextBtn = (
-    <button
-      className={styles.nextBtn}
-      onClick={() => {
-        generateQuiz()
-        setIsAnswered(false)
-      }}
-    >Next</button>
-  )
+  const [quizQuantity, setQuizQuantity] = useState()
+  const [quizType, setQuizType] = useState([]) // possibly multiple values
 
-  const quizCard = (
-    <>
-      {isCapitalQuestion ? capitalPara : flagPara}
+  const [correctCount, setCorrectCount] = useState()
 
-      {shuffledAnswers.map((country, i) => 
-        <Button
-          country={country}
-          inQuestion={randomObject}
-          isAnswered={(value) => setIsAnswered(value)}
-          isAnswerPicked={isAnswered}
-          key={i}
+  useEffect(function changeCurrentScreen() {
+    if (currentScreen === 'quiz') {
+      setCurrentScreenElement(
+        <QuizScreen
+          generateObjects={generateObjects}
+          mainObject={mainObject}
+          shuffledAnswers={shuffledAnswers}
+          quizQuantity={quizQuantity}
+          quizType={quizType}
+          showResults={(string) => setCurrentScreen(string)}
+          correctCount={(number) => setCorrectCount(number)}
         />
-      )}
+      )
+    } else if (currentScreen === 'start') {
+      setCurrentScreenElement(
+        <StartScreen
+          length={filteredData.length}
+          generateObjects={() => generateObjects()}
+          gatherInput={(string, quantity, type) => {
+            setCurrentScreen(string)
+            setQuizQuantity(quantity)
+            setQuizType(type)
+          }}
+        /> 
+      )
+    } else if (currentScreen === 'results') {
+      setCurrentScreenElement(
+        <ResultsScreen
+          correctCount={correctCount}
+        />
+      )
+    } else {
+      alert(`There's an error in displaying current screen`)
+    }
+  }, [mainObject, shuffledAnswers])
 
-      {isAnswered ? nextBtn : null}
-    </>
-  )
 
   return (
     <>
       <Head>
         <title>Country Quiz</title>
         <link rel="icon" href="/devchallenges.png" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" />
+        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet" />
       </Head>
 
       <main className={styles.wrapper}>
-        {isMainScreen
-          ? <StartScreen
-              isSubmited={(boolean, quantity, mode) => {
-                setIsMainScreen(boolean)
-                setupGame(quantity, mode)
-              }}
-            /> 
-          : quizCard}
+        {currentScreenElement}
       </main>
     </>
   )
