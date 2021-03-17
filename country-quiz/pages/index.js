@@ -8,65 +8,67 @@ import QuizScreen from '../components/QuizScreen'
 
 // this is done on a server-side
 export async function getStaticProps() {
-  const response = await fetch('https://restcountries.eu/rest/v2/all?fields=name;capital;flag;languages;')
+  const response = await fetch('https://restcountries.eu/rest/v2/all?fields=name;capital;flag;')
   const data = await response.json()
-
-  // https://www.geeksforgeeks.org/how-to-implement-a-filter-for-objects-in-javascript/
-  const filteredData = data.filter(country => { // if curly braces, use `return`
-    const regExp = /^([a-z-,. '()A-Z]{0,})$/;
-    // ^ $ - beginning and end of a string. if smth doesn't match, whole test is falsy
-    // {0,} - matches 0 or more. if omit, rules in brackets would be only for one char
-
-    if (country.capital !== '') {
-      return true
-    } else {
-      return false
-    }
-  })
-
 
   return {
     props: {
-      filteredData // list of 124 objects with a country, capital and flag
+      data // array of 250 objects with country, capital and flag
     }
   }
 }
 
-export default function Home({ filteredData }) {
+export default function Home({ data }) {
+  const [dataCopy, setDataCopy] = useState(data)
+  const [quizQuantity, setQuizQuantity] = useState(31)
+  const [quizType, setQuizType] = useState(['capital']) // array with types of questions
+
   const [mainObject, setMainObject] = useState({}) // object with country, capital and flag
   const [shuffledAnswers, setShuffledAnswers] = useState([]) // array to display as answers
 
+  useEffect(function filterData() {
+    let filteredData = data.slice()
+
+    // if only 'capital` checkbox is checked, data will be filtered
+    // otherwise, copy of the original data will be set
+    if (quizType.length === 1 && quizType.includes('capital')) {
+      // https://www.geeksforgeeks.org/how-to-implement-a-filter-for-objects-in-javascript/
+      filteredData = filteredData.filter(country => { // if curly braces, use `return`
+        if (country.capital !== '') {
+          return true
+        } else {
+          return false
+        }
+      })
+    }
+    
+    setDataCopy(filteredData)
+  }, [quizType]) // triggers when types of questions change
+
   function generateObjects() {
     // picks a random object w/ country, capital and flag
-    const randomIndex = Math.floor(Math.random() * filteredData.length)
-    const pickedObject = filteredData[randomIndex]
-    filteredData.splice(randomIndex, 1) // removes picked object from array
-    console.log(pickedObject)
+    const randomIndex = Math.floor(Math.random() * dataCopy.length)
+    const pickedObject = dataCopy[randomIndex]
+    console.log('correct answer: ' + pickedObject.name)
+    dataCopy.splice(randomIndex, 1) // removes picked object from array
     setMainObject(pickedObject) // state for a question (it doesn't set until effect is over)
     
     let answersList = [pickedObject.name]; // sets up an array with a randomly picked country
     
     for (let i = 0; i < 3; i++) { // a loop to add 3 more variants to the quiz
-      const randomCountry = filteredData[Math.floor(Math.random() * filteredData.length)]
+      const randomCountry = dataCopy[Math.floor(Math.random() * dataCopy.length)]
       answersList = [...answersList, randomCountry.name]
     }
     
-    console.log(answersList) // array with 4 variants of countries (1 is true)
-    
     // https://flaviocopes.com/how-to-shuffle-array-javascript/
-    // argument is a function that generates  a number > or < than 0; sorts accordingly 
+    // argument is a function that generates a number > or < than 0; sorts accordingly 
     setShuffledAnswers(answersList.sort(() => Math.random() - 0.5))
   }
-  console.log(shuffledAnswers)
-
 
   const [currentScreen, setCurrentScreen] = useState('start')
   const [currentScreenElement, setCurrentScreenElement] = useState()
 
-  const [quizQuantity, setQuizQuantity] = useState()
-  const [quizType, setQuizType] = useState([]) // possibly multiple values
-
-  const [correctCount, setCorrectCount] = useState()
+  const [correctCount, setCorrectCount] = useState(0)
 
   useEffect(function changeCurrentScreen() {
     if (currentScreen === 'quiz') {
@@ -84,25 +86,27 @@ export default function Home({ filteredData }) {
     } else if (currentScreen === 'start') {
       setCurrentScreenElement(
         <StartScreen
-          length={filteredData.length}
+          dataLength={data.length}
+          filteredLength={dataCopy.length}
+          quizType={(type) => setQuizType(type)}
+          quizQuantity={(quantity) => setQuizQuantity(quantity)}
+          changeScreen={(string) => setCurrentScreen(string)}
           generateObjects={() => generateObjects()}
-          gatherInput={(string, quantity, type) => {
-            setCurrentScreen(string)
-            setQuizQuantity(quantity)
-            setQuizType(type)
-          }}
         /> 
       )
     } else if (currentScreen === 'results') {
       setCurrentScreenElement(
         <ResultsScreen
           correctCount={correctCount}
+          currentScreen={(string) => setCurrentScreen(string)}
+          quizType={(string) => setQuizType(string)}
+          resetCounter={(number) => setCorrectCount(number)}
         />
       )
     } else {
       alert(`There's an error in displaying current screen`)
     }
-  }, [mainObject, shuffledAnswers])
+  }, [currentScreen, mainObject, dataCopy])
 
 
   return (
@@ -115,6 +119,7 @@ export default function Home({ filteredData }) {
       </Head>
 
       <main className={styles.wrapper}>
+        <h1>Country quiz</h1>
         {currentScreenElement}
       </main>
     </>

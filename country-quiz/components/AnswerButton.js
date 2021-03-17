@@ -3,39 +3,42 @@ import { useState, useEffect } from 'react'
 
 export default function Button(props) {
 	const [btnClass, setBtnClass] = useState('')
-	const [correctCount, setCorrectCount] = useState(0)
 
-	useEffect(function setClassForCorrectAnswer() {
-		// loops through all instances of buttons; truthy for one with corresponding country
-		if (props.isAnswerPicked && props.correctAnswer.name === props.country) {
+	useEffect(function setClassesForButtons() {
+		// loops through all instances of buttons;
+
+		// if answer is picked and it is correct one
+		if (props.isAnswered && props.correctAnswer.name === props.country) {
 			setBtnClass(styles.true)
-		} else if (!props.isAnswerPicked && btnClass !== '') {
+		} 
+		
+		// if answer isn't picked
+		if (!props.isAnswered) {
 			setBtnClass('')
 		}
-	}, [props.isAnswerPicked])
+	}, [props.isAnswered])
 
-	function handleClick() {
+	function handleColoring() { // colors clicked answer
 		if (props.correctAnswer.name === props.country) {
 			setBtnClass(styles.true)
-			setCorrectCount(correctCount + 1)
-		} else if (props.correctAnswer.name !== props.country) {
+
+      // sets value to callback because each instance has its own state
+			props.setCorrectCount(props.correctCount + 1)
+		} else {
 			setBtnClass(styles.false)
 		}
-
-		props.isAnswered(true)
 	}
 
 	return (
 		<button
 			className={`${styles.initial} ${btnClass}`}
 			onClick={() => {
-				handleClick()
-				console.log(correctCount)
-				props.correctCount(correctCount)
+				handleColoring()
+				props.setIsAnswered(true)
 			}}
 			disabled={props.isAnswerPicked}
 		>
 			{props.country}
 		</button>
-	);
+	)
 }

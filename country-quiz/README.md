@@ -5,3 +5,8 @@
 
 ## 14.03
 remove countries w/o capital from questions about capitals
+
+## 15.03
+tasks:
+* if picked object w/o capital, pick flag question
+	if country question only, omit this object

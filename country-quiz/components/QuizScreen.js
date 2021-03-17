@@ -1,20 +1,18 @@
 import { useState, useEffect } from 'react'
 import styles from '../styles/QuizScreen.module.css'
 import AnswerButton from './AnswerButton'
-// import StartScreen from '../components/StartScreen'
-// import ResultsScreen from '../components/ResultsScreen'
 
 export default function QuizScreen(props) {
   const [isAnswered, setIsAnswered] = useState(false) // boolean to display 'next' button
   const [callToAction, setCallToAction] = useState('Next')
   const [counter, setCounter] = useState(1)
-  const [correctCount, setCorrectCount] = useState()
+  const [correctCount, setCorrectCount] = useState(0)
 
   useEffect(function generateQuestion() {
     if (!isAnswered) {
       props.correctCount(correctCount)
 
-      // process type (capital, flag)
+      // if one type is chosen
       if (props.quizType.length === 1) {
         if (props.quizType.includes('capital')) {
           setQuestionPara(capitalPara)
@@ -23,13 +21,17 @@ export default function QuizScreen(props) {
         }
 
       } else if (props.quizType.includes('capital' && 'flag')) {
-        // https://stackoverflow.com/a/36756480/13285338
-        const randomBoolean = Math.random() < 0.5 // generates random boolean
-        setQuestionPara(randomBoolean ? capitalPara : flagPara)
-        console.log('array length more that 1, includes both')
-
+        // if current country w/o capital, set flag question automatically
+        if (props.mainObject.capital === '') {
+					setQuestionPara(flagPara)
+        } else {
+          // https://stackoverflow.com/a/36756480/13285338
+          const randomBoolean = Math.random() < 0.5 // generates random boolean
+          setQuestionPara(randomBoolean ? capitalPara : flagPara)
+        }
+				
       } else {
-        console.log('props.quizType must be empty')
+        alert('props.quizType must be empty')
       }
     }
 
@@ -37,7 +39,7 @@ export default function QuizScreen(props) {
       setCallToAction('Show results')
     }
 
-    if (counter >= props.quizQuantity) {
+    if (counter > props.quizQuantity) {
       props.showResults('results')
     }
   }, [props.mainObject])
@@ -71,6 +73,7 @@ export default function QuizScreen(props) {
   return (
     <>
       <p className={styles.counter}>#{counter} of {props.quizQuantity}</p>
+      <p className={styles.counter}>{correctCount} is correct</p>
 
       {questionPara}
 
@@ -78,9 +81,10 @@ export default function QuizScreen(props) {
         <AnswerButton
           country={country}
           correctAnswer={props.mainObject}
-          isAnswered={(boolean) => setIsAnswered(boolean)}
-          correctCount={(number) => setCorrectCount(number)}
-          isAnswerPicked={isAnswered}
+          correctCount={correctCount}
+          setCorrectCount={(number) => setCorrectCount(number)}
+          setIsAnswered={(boolean) => setIsAnswered(boolean)}
+          isAnswered={isAnswered}
           key={i}
         />
       )}
