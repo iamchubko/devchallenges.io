@@ -1,0 +1,96 @@
+.li:not(:first-of-type) { /* each button but not the first one */
+	margin-top: 25px;
+}
+
+.li {
+	counter-increment: counter; /* sets up a counter */
+}
+
+.button {
+	/* resets default styling */
+	text-align: left;
+	
+	width: 400px;
+	height: 56px;
+	border: 2px solid rgba(96, 102, 208, 0.7);
+	border-radius: 12px;
+	padding-left: 82px;
+	padding-right: 40px;
+	background-color: white;
+	
+	font-size: 1.125rem;
+	font-weight: 500;
+	color: rgba(96, 102, 208, 0.8);
+	
+	position: relative;
+}
+
+
+
+/* COUNTER */
+
+.button::before {
+	content: counter(counter, upper-latin); /* define counter appearance */
+	width: 25px;
+	position: absolute;
+	top: calc(50% - 35px / 2); /* half of the container - height / half */
+	left: 19px;
+
+	color: rgba(96, 102, 208, 0.8);
+	font-size: 1.5rem;
+	font-weight: 500;
+}
+
+.button:hover:not(:disabled)::before,
+.button.true::before,
+.button.false::before {
+	color: white;
+}
+
+.button:active {
+	transform: scale(0.99);
+}
+
+.button:hover:not(:disabled) { /* hover wouldn't work when button is disabled */
+	background-color: #F9A826;
+	border-color: transparent;
+	color: white;
+}
+
+
+/* .button:focus {
+	outline: unset;
+} */
+
+
+.true {
+	background-color: #60BF88;
+	color: white;
+	border-color: transparent;
+}
+
+.false {
+	background-color: #EA8282;
+	color: white;
+	border-color: transparent;
+}
+
+
+/* CIRCLE when true and false answer has been picked*/
+
+.button::after {
+	font-family: 'Material Icons Round';
+	font-size: 1.25rem;
+	color: #F2F2F2;
+	position: absolute;
+	right: 18px;
+	top: calc(50% - 20px / 2);
+}
+
+.true::after {
+	content: 'check_circle_outline';
+}
+
+.false::after {
+	content: 'highlight_off';
+}

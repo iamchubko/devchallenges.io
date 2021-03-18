@@ -10,9 +10,9 @@ export default function QuizScreen(props) {
 
   useEffect(function generateQuestion() {
     if (!isAnswered) {
-      props.correctCount(correctCount)
+      props.setCorrectCount(correctCount)
 
-      // if one type is chosen
+      // if one type has been chosen
       if (props.quizType.length === 1) {
         if (props.quizType.includes('capital')) {
           setQuestionPara(capitalPara)
@@ -53,7 +53,9 @@ export default function QuizScreen(props) {
     
   const flagPara = (
     <>
-      <img src={props.mainObject.flag} className={styles.flag} alt={`Didn't you think it would be that easy, huh?`} />
+      <div className={styles.flagContainer}>
+        <img src={props.mainObject.flag} className={styles.flag} alt={`Didn't you think it would be that easy, huh?`} />
+      </div>
       <p className={styles.question}>Which country does this flag belong to?</p>
     </>
   )
@@ -69,25 +71,40 @@ export default function QuizScreen(props) {
     >{callToAction}</button>
   )
 
+  const [article, setArticle] = useState('are')
+
+  useEffect(function changeArticle() {
+    if (correctCount === 1) {
+      setArticle('is')
+    } else {
+      setArticle('are')
+    }
+  }, [correctCount])
+
   
   return (
     <>
-      <p className={styles.counter}>#{counter} of {props.quizQuantity}</p>
-      <p className={styles.counter}>{correctCount} is correct</p>
+      <img className={styles.vector} src='/adventure.svg' alt='vector image of a man with a bagpack standing next to a big globe' />
+      <p className={styles.totalCounter}>
+        <span className={styles.currentCounter}>{counter}</span>
+        {' '}/ {props.quizQuantity}  &#183; <span className={styles.correctCounter}>{correctCount}</span> {article} correct
+      </p>
 
       {questionPara}
 
-      {props.shuffledAnswers.map((country, i) => 
-        <AnswerButton
-          country={country}
-          correctAnswer={props.mainObject}
-          correctCount={correctCount}
-          setCorrectCount={(number) => setCorrectCount(number)}
-          setIsAnswered={(boolean) => setIsAnswered(boolean)}
-          isAnswered={isAnswered}
-          key={i}
-        />
-      )}
+      <ol className={styles.buttonList}>
+        {props.shuffledAnswers.map((country, i) => 
+          <AnswerButton
+            country={country}
+            correctAnswer={props.mainObject}
+            correctCount={correctCount}
+            setCorrectCount={(number) => setCorrectCount(number)}
+            setIsAnswered={(boolean) => setIsAnswered(boolean)}
+            isAnswered={isAnswered}
+            key={i}
+          />
+        )}
+      </ol>
 
       {isAnswered ? nextBtn : null}
     </>

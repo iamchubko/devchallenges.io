@@ -10,3 +10,12 @@ remove countries w/o capital from questions about capitals
 tasks:
 * if picked object w/o capital, pick flag question
 	if country question only, omit this object
+
+## 17.03
+- rename/create matching .css files for pages/components
+- fix disabling buttons when an answer has been chosen
+
+
+known bugs and other stuff:
+* when an answer has been chosen, buttons remain active; correct counter updates on each click
+* rename callback functions (add `set` to them)

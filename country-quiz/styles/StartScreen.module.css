@@ -1,8 +1,172 @@
-.label {
-	display: block;
+.form {
+    display: flex;
+	flex-direction: column;
 }
 
+.fieldset {
+    border: unset;
+}
+
+.fieldset:not(:first-of-type) {
+    margin-top: 50px;
+}
+
+.legend {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #1D355D;
+    max-width: 400px;
+    margin-bottom: 15px;
+}
+
+.label {
+    display: block;
+    font-size: 1.125rem;
+    color: #1D355D;
+}
+
+/* custom checkbox */
+
+.label {
+    display: flex;
+    align-items: flex-start;
+}
+
+    .checkbox { /* hides html checkbox */
+        position: absolute; /* removes checkbox from the normal flow */
+        opacity: 0;
+    }
+
+    .customCheckbox {
+        position: relative;
+        margin: auto 0;
+    }
+
+    .customCheckbox::before { /* checkbox rectangle */
+        content: '';
+        display: block;
+        position: relative;
+        margin-right: 0.8rem;
+        height: 21px;
+        width: 21px;
+        border: 1px solid rgba(96, 102, 208, 0.7);
+        border-radius: 6px;
+    }
+
+    .customCheckbox::after {
+        font-family: 'Material Icons Round';
+        font-weight: bold;
+        color: rgba(96, 102, 208, 0.8);
+        content: 'done';
+        position: absolute;
+        width: 21px;
+        text-align: center;
+        top: 2px;
+        opacity: 0;
+    }
+
+    /* conditions of the custom checkbox */
+
+    .checkbox:focus + .customCheckbox::before,
+    .checkbox:hover + .customCheckbox::before,
+    .checkbox:active + .customCheckbox::before {
+        border-color: #1D355D;
+    }
+    
+
+
+    /* check mark */
+
+    .checkbox:checked + .customCheckbox::after {
+        opacity: 1;
+    }
+
+
+
+
+
+/* radio button */
+
+.radio {
+    position: absolute; /* removes checkbox from the normal flow */
+    opacity: 0;
+}
+
+.customRadio {
+    position: relative;
+    margin: auto 0;
+}
+
+    .customRadio::before { /* checkbox rectangle */
+        content: '';
+        display: block;
+        position: relative;
+        margin-right: 0.8rem;
+        height: 18px;
+        width: 18px;
+        border: 1px solid rgba(96, 102, 208, 0.7);
+        border-radius: 50%;
+    }
+
+    .customRadio::after {
+        content: '';
+        background-color: rgba(96, 102, 208, 0.8);
+        position: absolute;
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        text-align: center;
+        top: 4px;
+        left: 4px;
+        opacity: 0;
+    }
+
+    /* conditions of the custom checkbox */
+
+    .radio:focus + .customRadio::before,
+    .radio:hover + .customRadio::before,
+    .radio:active + .customRadio::before {
+        border-color: #1D355D;
+    }
+    
+
+
+    /* check mark */
+
+    .radio:checked + .customRadio::after {
+        opacity: 1;
+    }
+
+
+/* removes arrows from number input for chrome */
+.number::-webkit-inner-spin-button,
+.number::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+}
+
+.number { /* removes arrows from number input for firefox */
+    appearance: textfield;
+    margin-left: 5px;
+    border: unset;
+    border-radius: 6px;
+    border: 1px solid rgba(96, 102, 208, 0.8);
+    align-self: center;
+    font-size: 1.125rem;
+    text-align: center;
+    width: 3rem;
+}
+
+
+/* Start button */
 .startBtn {
-	margin-top: 30px;
-	font-size: 1.5rem;
+    font-weight: 600;
+    font-size: 18px;
+
+    margin-top: 70px;
+    margin-bottom: -35px;
+    border-radius: 12px;
+    border: 2px solid #1D355D;
+    background-color: white;
+    padding: 18px 60px;
+    align-self: center;
 }

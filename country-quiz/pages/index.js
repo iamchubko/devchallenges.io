@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import styles from '../styles/QuizScreen.module.css'
+import styles from '../styles/Home.module.css'
 
 import Head from 'next/head'
 import StartScreen from '../components/StartScreen'
@@ -27,6 +27,7 @@ export default function Home({ data }) {
   const [shuffledAnswers, setShuffledAnswers] = useState([]) // array to display as answers
 
   useEffect(function filterData() {
+    // https://holycoders.com/javscript-copy-array/
     let filteredData = data.slice()
 
     // if only 'capital` checkbox is checked, data will be filtered
@@ -80,7 +81,7 @@ export default function Home({ data }) {
           quizQuantity={quizQuantity}
           quizType={quizType}
           showResults={(string) => setCurrentScreen(string)}
-          correctCount={(number) => setCorrectCount(number)}
+          setCorrectCount={(number) => setCorrectCount(number)}
         />
       )
     } else if (currentScreen === 'start') {
@@ -88,8 +89,8 @@ export default function Home({ data }) {
         <StartScreen
           dataLength={data.length}
           filteredLength={dataCopy.length}
-          quizType={(type) => setQuizType(type)}
-          quizQuantity={(quantity) => setQuizQuantity(quantity)}
+          setQuizType={(type) => setQuizType(type)}
+          setQuizQuantity={(quantity) => setQuizQuantity(quantity)}
           changeScreen={(string) => setCurrentScreen(string)}
           generateObjects={() => generateObjects()}
         /> 
@@ -98,8 +99,9 @@ export default function Home({ data }) {
       setCurrentScreenElement(
         <ResultsScreen
           correctCount={correctCount}
-          currentScreen={(string) => setCurrentScreen(string)}
-          quizType={(string) => setQuizType(string)}
+          setCurrentScreen={(string) => setCurrentScreen(string)}
+          setQuizType={(string) => setQuizType(string)}
+          setQuizQuantity={(string) => setQuizQuantity(string)}
           resetCounter={(number) => setCorrectCount(number)}
         />
       )
@@ -116,11 +118,22 @@ export default function Home({ data }) {
         <link rel="icon" href="/devchallenges.png" />
         <link rel="preconnect" href="https://fonts.gstatic.com" />
         <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet" />
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet"></link>
       </Head>
 
-      <main className={styles.wrapper}>
-        <h1>Country quiz</h1>
-        {currentScreenElement}
+      <main className={styles.main}>
+        <h1
+          className={styles.header}
+          onClick={() => {
+            setCurrentScreen('start')
+            setQuizType(['capital'])
+            setQuizQuantity(31)
+            setCorrectCount(0)
+          }}
+        >Country quiz</h1>
+        <article className={styles.article}>
+          {currentScreenElement}
+        </article>
       </main>
     </>
   )

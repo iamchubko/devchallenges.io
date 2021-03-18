@@ -1,0 +1,45 @@
+.vector {
+    width: 240px;
+    margin: -20px auto 0;
+}
+
+.header,
+.para,
+.button {
+    text-align: center;
+    color: #1D355D;
+}
+
+.header {
+    margin-top: 70px;
+    font-size: 3rem;
+    font-weight: bold;
+}
+
+.para {
+    font-size: 1.125rem;
+    font-weight: 400;
+}
+
+.counter {
+    color: #6FCF97;
+    font-size: 2.25rem;
+    font-weight: bold;
+}
+
+    .low {
+        color: #EA8282;
+    }
+
+.button {
+    font-weight: 600;
+    font-size: 18px;
+
+    margin-top: 70px;
+    margin-bottom: -35px;
+    border-radius: 12px;
+    border: 2px solid #1D355D;
+    background-color: white;
+    padding: 18px 60px;
+    align-self: center;
+}

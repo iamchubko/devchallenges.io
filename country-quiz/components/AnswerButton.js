@@ -1,4 +1,4 @@
-import styles from '../styles/Button.module.css'
+import styles from '../styles/AnswerButton.module.css'
 import { useState, useEffect } from 'react'
 
 export default function Button(props) {
@@ -30,15 +30,17 @@ export default function Button(props) {
 	}
 
 	return (
-		<button
-			className={`${styles.initial} ${btnClass}`}
-			onClick={() => {
-				handleColoring()
-				props.setIsAnswered(true)
-			}}
-			disabled={props.isAnswerPicked}
-		>
-			{props.country}
-		</button>
+    <li className={styles.li}>
+      <button
+        className={`${styles.button} ${btnClass}`}
+        onClick={() => {
+          handleColoring()
+          props.setIsAnswered(true)
+        }}
+        disabled={props.isAnswered}
+        >
+        {props.country}
+      </button>
+    </li>
 	)
 }
