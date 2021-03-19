@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import styles from '../styles/QuizScreen.module.css'
 import AnswerButton from './AnswerButton'
 
@@ -31,7 +31,7 @@ export default function QuizScreen(props) {
         }
 				
       } else {
-        alert('props.quizType must be empty')
+        alert(`Type of question hasn't been chosen`)
       }
     }
 
@@ -59,7 +59,19 @@ export default function QuizScreen(props) {
       <p className={styles.question}>Which country does this flag belong to?</p>
     </>
   )
+
   
+
+  // sets up references for DOM elements
+  // names should be empty until they're attached to their respective elements
+  const nextBtnRef = useRef(null)
+  
+    useEffect(function focusOnButtons() {
+      if (isAnswered) {
+        nextBtnRef.current.focus()
+      }
+    }, [isAnswered])
+
   const nextBtn = (
     <button
       className={styles.nextBtn}
@@ -67,9 +79,11 @@ export default function QuizScreen(props) {
         props.generateObjects()
         setIsAnswered(false)
         setCounter(counter + 1)
-      }}
-    >{callToAction}</button>
-  )
+      }}  
+      ref={nextBtnRef}
+    >{callToAction}</button>    
+  )    
+
 
   const [article, setArticle] = useState('are')
 
@@ -84,7 +98,7 @@ export default function QuizScreen(props) {
   
   return (
     <>
-      <img className={styles.vector} src='/adventure.svg' alt='vector image of a man with a bagpack standing next to a big globe' />
+      <img className={styles.vector} src='/images/adventure.svg' alt='vector image of a man with a bagpack standing next to a big globe' />
       <p className={styles.totalCounter}>
         <span className={styles.currentCounter}>{counter}</span>
         {' '}/ {props.quizQuantity}  &#183; <span className={styles.correctCounter}>{correctCount}</span> {article} correct
@@ -102,6 +116,7 @@ export default function QuizScreen(props) {
             setIsAnswered={(boolean) => setIsAnswered(boolean)}
             isAnswered={isAnswered}
             key={i}
+            id={i}
           />
         )}
       </ol>

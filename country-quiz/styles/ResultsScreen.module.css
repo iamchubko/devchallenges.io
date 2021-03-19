@@ -42,4 +42,17 @@
     background-color: white;
     padding: 18px 60px;
     align-self: center;
+
+    transition-property: background-color, border-color, color, transform;
+    transition-duration: 100ms;
+}
+
+.button:hover { /* hover wouldn't work when button is disabled */
+	background-color: #F9A826;
+	border-color: transparent;
+	color: white;
+}
+
+.button:active {
+    transform: scale(0.99);
 }

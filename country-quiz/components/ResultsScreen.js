@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useRef } from 'react'
 import styles from '../styles/ResultsScreen.module.css'
 
 export default function ResultsScreen(props) {
@@ -15,7 +15,7 @@ export default function ResultsScreen(props) {
 	const [counterColor, setCounterColor] = useState('')
 	const [isDisplayed, setIsDisplayed] = useState(true)
 	const vector = (
-		<img className={styles.vector} src='/winners.svg' alt='vector image of happy people near a golden cup' />
+		<img className={styles.vector} src='/images/winners.svg' alt='vector image of happy people near a golden cup' />
 	)
 
 	useEffect(function displayImage() {
@@ -29,6 +29,12 @@ export default function ResultsScreen(props) {
 	}, [props.correctCount])
 
 	
+	const tryAgainBtnRef = useRef(null)
+
+	useEffect(function focusOnButton() {
+		tryAgainBtnRef.current.focus()
+	})
+
 
 	return (
 		<>
@@ -44,9 +50,10 @@ export default function ResultsScreen(props) {
 				onClick={() => {
 					props.setCurrentScreen('start')
 					props.setQuizType(['capital']) // resets type to the original state
-					props.setQuizQuantity(31) // resets type to the original state
+					props.setQuizQuantity(30) // resets quantity to the original state
 					props.resetCounter(0)
 				}}
+				ref={tryAgainBtnRef}
 			>Try again</button>
 		</>
 	)

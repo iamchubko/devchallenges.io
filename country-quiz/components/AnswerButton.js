@@ -1,5 +1,5 @@
 import styles from '../styles/AnswerButton.module.css'
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 
 export default function Button(props) {
 	const [btnClass, setBtnClass] = useState('')
@@ -29,16 +29,26 @@ export default function Button(props) {
 		}
 	}
 
+  const answerBtnRef = useRef(null)
+
+  useEffect(function focusOnButton() {
+    if (!props.inAnswered && answerBtnRef.current.id == 0) {
+      answerBtnRef.current.focus()
+    }
+  }, [props.isAnswered])
+
 	return (
     <li className={styles.li}>
       <button
+        id={props.id}
         className={`${styles.button} ${btnClass}`}
         onClick={() => {
           handleColoring()
           props.setIsAnswered(true)
         }}
         disabled={props.isAnswered}
-        >
+        ref={answerBtnRef}
+		  >
         {props.country}
       </button>
     </li>

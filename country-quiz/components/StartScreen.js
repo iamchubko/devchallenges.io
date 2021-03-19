@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState, useRef } from 'react'
 import styles from '../styles/StartScreen.module.css'
 
 export default function StartScreen(props) {
@@ -11,7 +11,7 @@ export default function StartScreen(props) {
 			// gets previous state and adds new value
 			value = [...type, e.target.value]
 		} else if (!e.target.checked) {
-			value = [...type] // 
+			value = [...type] // creates a shallow copy of the array
 			value.splice(type.indexOf(e.target.value), 1)
 		}
 
@@ -19,17 +19,68 @@ export default function StartScreen(props) {
 		props.setQuizType(value)
 	}
 
-	const [removeRadio, setRemoveRadio] = useState(false)
+	
+	const [quantity, setQuantity] = useState(30)
+	
+	function handleQuantity(e) {
+		if (e.target.value !== '') {
+			const inNumber = Math.round(Number(e.target.value))
+			props.setQuizQuantity(inNumber)
+			setQuantity(inNumber)
+		}
+	}
+	
+	
+	const [isRadio, setIsRadio] = useState(true)
+	const radioRef1 = useRef(null)
+	const radioRef2 = useRef(null)
+	const radioRef3 = useRef(null)
+	const radioRef4 = useRef(null)
+	const [inputClass, setInputClass] = useState(null)
+
+	useEffect(function handleRadio() {
+		if (isRadio) {
+			setInputClass(null)
+		} else {
+			radioRef1.current.checked = false
+			radioRef2.current.checked = false
+			radioRef3.current.checked = false
+			radioRef4.current.checked = false
+			setInputClass(styles.number__chosen)
+		}
+	}, [isRadio])
+
+	function handleNumber(e) {
+		if (e.target.value !== '' && e.target.value <= props.filteredLength) {
+			setIsRadio(false)
+		}
+	}
+	
 
 	function handleSubmit(e) {
 		e.preventDefault()
-		if (type.length !== 0) {
+		if (type.length !== 0 && quantity > 0 && quantity <= props.filteredLength) {
 			props.changeScreen('quiz')
 			props.generateObjects()
+		} else if (type.length === 0) {
+			alert('Please, choose the type of questions')
 		} else {
-			alert('please, choose the type of questions')
+			alert(`Please, type a number between 1 and ${props.filteredLength}`)
 		}
 	}
+
+	const [buttonText, setButtonText] = useState()
+	const [buttonClass, setButtonClass] = useState()
+
+	useEffect(function acceptInput() {
+		if (type.length !== 0 && quantity > 0 && quantity <= props.filteredLength) {
+			setButtonClass(styles.startBtn__true)
+			setButtonText('Start a game')
+		} else {
+			setButtonClass(styles.startBtn__false)
+			setButtonText('Set up your game')
+		}
+	}, [type, quantity])
 
 	return (
 		<>
@@ -66,9 +117,14 @@ export default function StartScreen(props) {
 						<input
 							type='radio'
 							name='quantity'
-							onChange={() => props.setQuizQuantity(props.filteredLength)}
+							value={props.filteredLength}
+							onChange={(e) => {
+								handleQuantity(e)
+								setIsRadio(true)
+							}}
 							id='ultimate'
 							className={styles.radio}
+							ref={radioRef1}
 						/>
 						<span className={styles.customRadio}></span>
 					Ultimate — {props.filteredLength}</label>
@@ -77,61 +133,78 @@ export default function StartScreen(props) {
 						<input
 							type='radio'
 							name='quantity'
-							onChange={() => props.setQuizQuantity(Math.round(props.dataLength / 2))} // rounds off if props.dataLength is odd 
+							value='120'
+							onChange={(e) => {
+								handleQuantity(e)
+								setIsRadio(true)
+							}}
 							id='half'
 							className={styles.radio}
+							ref={radioRef2}
 						/>
 						<span className={styles.customRadio}></span>
-					Half marathon — {Math.round(props.dataLength / 2)}</label>
+					Half marathon — 120</label>
 
 					<label className={styles.label} htmlFor='quarter'>
 						<input
 							type='radio'
 							name='quantity'
-							onChange={() => props.setQuizQuantity(Math.round(props.dataLength / 4))}
+							value='60'
+							onChange={(e) => {
+								handleQuantity(e)
+								setIsRadio(true)
+							}}
 							id='quarter'
 							className={styles.radio}
+							ref={radioRef3}
 						/>
 						<span className={styles.customRadio}></span>
-					Quarter mile — {Math.round(props.dataLength / 4)}</label>
+					Quarter mile — 60</label>
 
 					<label className={styles.label} htmlFor='oneEighth'>
 						<input
 							type='radio'
 							name='quantity'
+							value='30'
 							defaultChecked
-							onChange={() => props.setQuizQuantity(Math.round(props.dataLength / 8))}
+							onChange={(e) => {
+								handleQuantity(e)
+								setIsRadio(true)
+							}}
 							id='oneEighth'
 							className={styles.radio}
+							ref={radioRef4}
 						/>
 						<span className={styles.customRadio}></span>
-					Geography teacher — {Math.round(props.dataLength / 8)}</label>
+					Geography teacher — 30</label>
 
-					<label className={styles.label} htmlFor='your'>
+					<label className={styles.label} htmlFor='yours'>
+						0 &lt; 
 						<input
-							type='radio'
-							name='quantity'
-							id='your'
-							className={styles.radio}
-						/>
-						<span className={styles.customRadio}></span>
-						Or choose your number —
-						<input
-							className={styles.number}
+							className={`${styles.number} ${inputClass}`}
 							type='number'
 							name='quantity'
-							onChange={e => props.setQuizQuantity(Math.round(Number(e.target.value)))}
+							onChange={(e) => {
+								handleNumber(e)
+								handleQuantity(e)
+							}}
+							onClick={(e) => {
+								handleNumber(e)
+								handleQuantity(e)
+							}}
 							id='yourNumber'
 							min='1'
 							max={props.filteredLength}
+							placeholder='or type yours'
 						/>
+						 &lt; {props.filteredLength}
 					</label>
 				</fieldset>
 
 				<button
-					className={styles.startBtn}
+					className={`${styles.startBtn} ${buttonClass}`}
 					onClick={(e) => handleSubmit(e)}
-				>Start a game</button>
+				>{buttonText}</button>
 			</form>
 		</>
 	)

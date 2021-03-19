@@ -20,7 +20,7 @@ export async function getStaticProps() {
 
 export default function Home({ data }) {
   const [dataCopy, setDataCopy] = useState(data)
-  const [quizQuantity, setQuizQuantity] = useState(31)
+  const [quizQuantity, setQuizQuantity] = useState(30)
   const [quizType, setQuizType] = useState(['capital']) // array with types of questions
 
   const [mainObject, setMainObject] = useState({}) // object with country, capital and flag
@@ -50,7 +50,7 @@ export default function Home({ data }) {
     // picks a random object w/ country, capital and flag
     const randomIndex = Math.floor(Math.random() * dataCopy.length)
     const pickedObject = dataCopy[randomIndex]
-    console.log('correct answer: ' + pickedObject.name)
+    // console.log(`%c${pickedObject.name}`, 'font-size:1rem;color:green')
     dataCopy.splice(randomIndex, 1) // removes picked object from array
     setMainObject(pickedObject) // state for a question (it doesn't set until effect is over)
     
@@ -115,10 +115,11 @@ export default function Home({ data }) {
     <>
       <Head>
         <title>Country Quiz</title>
+        <meta name='description' content='Country quiz with 200+ questions and different variations' />
         <link rel="icon" href="/devchallenges.png" />
         <link rel="preconnect" href="https://fonts.gstatic.com" />
-        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet" />
-        <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet"></link>
+        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&Montserrat:wght@500;700&display=swap" rel="stylesheet" />
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet" />
       </Head>
 
       <main className={styles.main}>
@@ -127,13 +128,17 @@ export default function Home({ data }) {
           onClick={() => {
             setCurrentScreen('start')
             setQuizType(['capital'])
-            setQuizQuantity(31)
+            setQuizQuantity(30)
             setCorrectCount(0)
           }}
+          tabIndex={0}
         >Country quiz</h1>
         <article className={styles.article}>
           {currentScreenElement}
         </article>
+        <footer className={styles.footer}>
+          coded by <span className={styles.footer__github}><a href='https://github.com/iamchubko'>Kirill Chubko</a></span> - <a href='https://devchallenges.io/'>devChallenges.io</a>
+        </footer>
       </main>
     </>
   )

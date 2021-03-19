@@ -7,8 +7,10 @@
     border: unset;
 }
 
-.fieldset:not(:first-of-type) {
+.fieldset:last-of-type { /* to center the input field w/ an input for a custom number */
     margin-top: 50px;
+    display: flex;
+    flex-direction: column;
 }
 
 .legend {
@@ -23,6 +25,12 @@
     display: block;
     font-size: 1.125rem;
     color: #1D355D;
+}
+
+.fieldset:last-of-type .label:last-of-type { /* label with input for a custom number */
+    align-self: center;
+    margin-top: 15px;
+    margin-left: 22px;
 }
 
 /* custom checkbox */
@@ -56,7 +64,7 @@
     .customCheckbox::after {
         font-family: 'Material Icons Round';
         font-weight: bold;
-        color: rgba(96, 102, 208, 0.8);
+        color: #1D355D;
         content: 'done';
         position: absolute;
         width: 21px;
@@ -110,7 +118,7 @@
 
     .customRadio::after {
         content: '';
-        background-color: rgba(96, 102, 208, 0.8);
+        background-color: #1D355D;
         position: absolute;
         width: 10px;
         height: 10px;
@@ -144,17 +152,23 @@
     -webkit-appearance: none;
 }
 
-.number { /* removes arrows from number input for firefox */
-    appearance: textfield;
-    margin-left: 5px;
+.number {
+    appearance: textfield; /* removes arrows from number input for firefox */
+    margin: 0 10px;
     border: unset;
     border-radius: 6px;
+    color: #1D355D;
     border: 1px solid rgba(96, 102, 208, 0.8);
     align-self: center;
     font-size: 1.125rem;
     text-align: center;
-    width: 3rem;
+    width: 8rem;
 }
+
+    .number__chosen {
+        border-color: #1D355D;
+        box-shadow: inset 0px 0px 0px 1px #1D355D;
+    }
 
 
 /* Start button */
@@ -165,8 +179,22 @@
     margin-top: 70px;
     margin-bottom: -35px;
     border-radius: 12px;
-    border: 2px solid #1D355D;
-    background-color: white;
+    border: 2px solid;
     padding: 18px 60px;
     align-self: center;
+
+    transition-property: background-color, color, border-color;
+    transition-duration: 100ms;
 }
+
+    .startBtn__true {
+        background-color: #F9A826;
+        border-color: transparent;
+        color: white;
+    }
+
+    .startBtn__false {
+        background-color: white;
+        border-color: #1D355D;
+        color: #1D355D;
+    }

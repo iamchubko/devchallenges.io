@@ -10,8 +10,9 @@
 	/* resets default styling */
 	text-align: left;
 	
-	width: 400px;
-	height: 56px;
+	width: 100%;
+	height: auto;
+	min-height: 56px;
 	border: 2px solid rgba(96, 102, 208, 0.7);
 	border-radius: 12px;
 	padding-left: 82px;
@@ -23,6 +24,9 @@
 	color: rgba(96, 102, 208, 0.8);
 	
 	position: relative;
+
+    transition-property: background-color, border-color, color, transform;
+    transition-duration: 100ms;
 }
 
 

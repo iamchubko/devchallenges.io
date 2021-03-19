@@ -4,7 +4,8 @@ body {
 }
 
 body {
-  background: no-repeat center/cover url('/background.png') rgb(82, 86, 161);
+  background: no-repeat center/cover url('/images/background.png') rgb(82, 86, 161);
+  background-attachment: fixed;
 }
 
 a {
