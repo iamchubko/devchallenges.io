@@ -6,15 +6,15 @@
 
 <div align="center">
   <h3>
-    <a href="https://devchallprojects.web.app/country-quiz/">
+    <a href="https://devchallprojects.web.app/country-quiz/" target='_blank'>
       Demo
     </a>
     <span> | </span>
-    <a href="">
+    <a href="https://devchallenges.io/solutions/H5M1Vk8wGe8cKHKqYTgS" target='_blank'>
       Solution
     </a>
     <span> | </span>
-    <a href="https://devchallenges.io/challenges/Bu3G2irnaXmfwQ8sZkw8">
+    <a href="https://devchallenges.io/challenges/Bu3G2irnaXmfwQ8sZkw8" target='_blank'>
       Challenge
     </a>
   </h3>
