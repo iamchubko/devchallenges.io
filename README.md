@@ -6,7 +6,7 @@
 
 The repository is dedicated to my solutions for designs from [DevChallenge.io](https://devchallenges.io/). I reproduce design with code almost pixel perfect and often add personal touches myself to add character or improve the overall experience.
 
-All projects have been built with responsiveness in mind, mostly with mobile-first approach. The early ones have been created with SCSS and JS. Now, my focus changed to React and other frameworks to speed up the development process.
+All projects have been built with responsiveness in mind, mostly with mobile-first approach. The early ones have been created with `SCSS` and `JS`. Now, my focus changed to `React` and other frameworks to speed up the development process.
 
 Each folder represents a solution. Below you can find a quick overview of solutions with accompanying notes. The order starts from the most advanced projects. For further exploration, navigate to the directory and see `readme.md` with a description.
 <br>
@@ -16,8 +16,8 @@ Each folder represents a solution. Below you can find a quick overview of soluti
 
 Each link will navigate you to the live demo of the project:
 * The trinity
-  - [Country Quiz](https://devchallprojects.web.app/country-quiz/) / React, Next.js, RESTful API
-  - [Quote Generator](https://devchallprojects.web.app/quotes-generator/) / React, RESTful API
+  - [Country Quiz](https://devchallprojects.web.app/country-quiz/) / `React`, `Next.js`, RESTful API
+  - [Quote Generator](https://devchallprojects.web.app/quotes-generator/) / `React`, RESTful API
   - [Recipe Page](https://devchallprojects.web.app/recipe-page/)
 * The rest
   - [Edie Homepage](https://devchallprojects.web.app/edie-homepage/) / Full landing page
