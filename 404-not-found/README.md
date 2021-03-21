@@ -26,7 +26,7 @@
 
 ## Overview
 
-Static page with responsive layout. Built with plain HTML and SCSS. Deployed with Firebase.
+Static page with mobile-first approach. Built with `HTML` and `SCSS`. Deployed to `Firebase`.
 
 ## How To Use
 
@@ -45,6 +45,5 @@ $ git clone https://github.com/iamchubko/devchallenges.io
 
 ## Contact
 
-- GitHub [@iamchubko](https://github.com/iamchubko)
-- Telegram @chubko
+- Telegram [@chubko](https://t.me/chubko)
 - devChallenges [@iamchubko](https://devchallenges.io/portfolio/iamchubko)

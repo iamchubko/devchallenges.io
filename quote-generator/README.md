@@ -24,16 +24,16 @@
   <img src='https://user-images.githubusercontent.com/56153711/110121748-d62e6880-7dcf-11eb-8aff-916c88865679.png' alt='quote-generator-preview'>
 </div>
 
-## Overview
+# Overview
 
-Quote generator built with React and [Quote Garden API](https://github.com/pprathameshmore/QuoteGarden). The page is responsive with attention to how site will be used on different platforms. On mobile, for example,buttons will be within reach for fingers.
+Quote generator built with `React` and [Quote Garden API](https://github.com/pprathameshmore/QuoteGarden). The page is responsive with attention to how site will be used on different platforms. On mobile, for example, buttons will be within reach for fingers.
 
 ## Notes
 
  - I didn't use [package](https://github.com/pprathameshmore/QuoteGardenNPM) provided by the API's developer because it uses obsolete version of the data, therefore I couldn't make it work. Instead, I wrote direct requests to the API.
- - The site built with React Hooks.
+ - The site built with `React Hooks`.
 
-## How To Use
+# How To Use
 
 Be aware if you want to run this page locally. You can do this only by installing the entire repo with all the projects in it.
 
@@ -50,13 +50,12 @@ $ npm install
 $ npm start
 ```
 
-## Acknowledgments
+# Acknowledgments
 
 - React documentation / [Using the Effect Hook](https://reactjs.org/docs/hooks-effect.html)
 - React documentation / [Can I skip an effect on updates?](https://reactjs.org/docs/hooks-faq.html#is-it-safe-to-omit-functions-from-the-list-of-dependencies)
 
-## Contact
+# Contact
 
-- GitHub [@iamchubko](https://github.com/iamchubko)
-- Telegram @chubko
+- Telegram [@chubko](https://t.me/chubko)
 - devChallenges [@iamchubko](https://devchallenges.io/portfolio/iamchubko)

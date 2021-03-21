@@ -4,15 +4,17 @@
 
 # Overview
 
-The repository is dedicated to my solutions for designs from [DevChallenge.io](https://devchallenges.io/). I reproduce design with code almost pixel perfect and often add personal touches myself to add character or improve the overall experience.
+The repository is dedicated to my solutions for designs from [devChallenges](https://devchallenges.io/). I reproduce design with code almost pixel perfectly and often add personal touches to add character or improve the overall experience.
 
-All projects have been built with responsiveness in mind, mostly with mobile-first approach. The early ones have been created with `SCSS` and `JS`. Now, my focus changed to `React` and other frameworks to speed up the development process.
+All projects have been built with responsiveness in mind, mostly with mobile-first approach. The early ones have been created with `SCSS` and `JS`. Now, my focus shifted towards `React`, `Next.js` and such.
 
-Each folder represents a solution. Below you can find a quick overview of solutions with accompanying notes. The order starts from the most advanced projects. For further exploration, navigate to the directory and see `readme.md` with a description.
+Each folder represents a solution. Below you can find a quick overview of solutions with accompanying notes. The order starts from the most advanced projects. For further info, navigate to the directory of interest and read accompanying `readme.md`.
 <br>
 <br>
 
 # Solutions
+
+All projects deployed under one domain on `Firebase`.
 
 Each link will navigate you to the live demo of the project:
 * The trinity
@@ -23,7 +25,7 @@ Each link will navigate you to the live demo of the project:
   - [Edie Homepage](https://devchallprojects.web.app/edie-homepage/) / Full landing page
   - [My Gallery](https://devchallprojects.web.app/my-gallery/) / Cool image hover animations
   - [Interior Consultant](https://devchallprojects.web.app/interior-consultant/)
-  - [Button Component](https://devchallprojects.web.app/button-component/) / Test of React
+  - [Button Component](https://devchallprojects.web.app/button-component/) / Test of `React`
   - [My Team Page](https://devchallprojects.web.app/my-team-page/)
   - [404 Not Found](https://devchallprojects.web.app/404-not-found/)
 
@@ -51,5 +53,5 @@ $ npm start
 
 # Get in touch
 
-- Telegram @chubko
+- Telegram [@chubko](https://t.me/chubko)
 - devChallenges [@iamchubko](https://devchallenges.io/portfolio/iamchubko)

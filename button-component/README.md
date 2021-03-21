@@ -26,7 +26,7 @@
 
 ## Overview
 
-Page with states of React component. Built with CSS and React. Deployed with Firebase.
+Page with states of `React` component. Built with `CSS` and `React`. Deployed to `Firebase`.
 
 ## How To Use
 
@@ -47,6 +47,5 @@ $ npm start
 
 ## Contact
 
-- GitHub [@iamchubko](https://github.com/iamchubko)
-- Telegram @chubko
+- Telegram [@chubko](https://t.me/chubko)
 - devChallenges [@iamchubko](https://devchallenges.io/portfolio/iamchubko)

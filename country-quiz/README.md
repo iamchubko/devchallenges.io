@@ -26,12 +26,12 @@
 
 ## Overview
 
-Country quiz web page built with React, Next.js and [REST Countries API](https://github.com/apilayer/restcountries). The app contains up to 250 randomly generated questions of a chosen type, and stats to check your progress along the way.
+Country quiz web page built with `React`, `Next.js` and [REST Countries API](https://github.com/apilayer/restcountries) as a database. The app contains up to 250 randomly generated questions of a chosen type, and stats to check your progress along the way.
 
 ## Technical stuff
 
- - This is a JAMstack web site: the page is statically generated with Next.js, written with React and fetches data from a RESTful API
- - The page is responsive
+ - This is a `JAMstack` web site: the page is statically generated with `Next.js`, written with `React` and fetches data from a `RESTful API`
+ - The page with a responsive layout
 
 ## How To Use
 
@@ -59,6 +59,5 @@ $ npm start
 
 ## Contact
 
-- GitHub [@iamchubko](https://github.com/iamchubko)
-- Telegram @chubko
+- Telegram [@chubko](https://t.me/chubko)
 - devChallenges [@iamchubko](https://devchallenges.io/portfolio/iamchubko)
