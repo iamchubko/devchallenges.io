@@ -17,9 +17,9 @@ Each folder represents a solution. Below you can find a quick overview of soluti
 All projects deployed under one domain on `Firebase`.
 
 Each link will navigate you to the live demo of the project:
-* The trinity
+* Latest and greatest
   - [Country Quiz](https://devchallprojects.web.app/country-quiz/) / `React`, `Next.js`, RESTful API
-  - [Quote Generator](https://devchallprojects.web.app/quotes-generator/) / `React`, RESTful API
+  - [Quote Generator](https://devchallprojects.web.app/quote-generator/) / `React`, RESTful API
   - [Recipe Page](https://devchallprojects.web.app/recipe-page/)
 * The rest
   - [Edie Homepage](https://devchallprojects.web.app/edie-homepage/) / Full landing page
