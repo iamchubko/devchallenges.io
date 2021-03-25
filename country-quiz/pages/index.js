@@ -137,7 +137,7 @@ export default function Home({ data }) {
           {currentScreenElement}
         </article>
         <footer className={styles.footer}>
-          coded by <span className={styles.footer__github}><a href='https://github.com/iamchubko'>Kirill Chubko</a></span> - <a href='https://devchallenges.io/'>devChallenges.io</a>
+          coded by <span className={styles.footer__github}><a href='https://github.com/iamchubko' target='_blank'>Kirill Chubko</a></span> - <a href='https://devchallenges.io/' target='_blank'>devChallenges.io</a>
         </footer>
       </main>
     </>

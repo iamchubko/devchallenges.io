@@ -33,11 +33,11 @@
 
 .button {
     font-weight: 600;
-    font-size: 18px;
+    font-size: 1.125rem;
 
-    margin-top: 70px;
+    margin-top: 4.375rem;
     margin-bottom: -35px;
-    border-radius: 12px;
+    border-radius: 0.75rem;
     border: 2px solid #1D355D;
     background-color: white;
     padding: 18px 60px;

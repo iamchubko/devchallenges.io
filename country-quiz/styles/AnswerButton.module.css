@@ -12,11 +12,11 @@
 	
 	width: 100%;
 	height: auto;
-	min-height: 56px;
+	min-height: 3.5rem;
 	border: 2px solid rgba(96, 102, 208, 0.7);
-	border-radius: 12px;
-	padding-left: 82px;
-	padding-right: 40px;
+	border-radius: 0.75rem;
+	padding-left: 5.125rem;
+	padding-right: 2.5rem;
 	background-color: white;
 	
 	font-size: 1.125rem;
@@ -35,10 +35,10 @@
 
 .button::before {
 	content: counter(counter, upper-latin); /* define counter appearance */
-	width: 25px;
+	width: 1.5625rem;
 	position: absolute;
-	top: calc(50% - 35px / 2); /* half of the container - height / half */
-	left: 19px;
+	top: calc(50% - 2.1875rem / 2); /* half of the container - height / half */
+	left: 1.1875rem;
 
 	color: rgba(96, 102, 208, 0.8);
 	font-size: 1.5rem;
@@ -87,8 +87,8 @@
 	font-size: 1.25rem;
 	color: #F2F2F2;
 	position: absolute;
-	right: 18px;
-	top: calc(50% - 20px / 2);
+	right: 1.125rem;
+	top: calc(50% - 1.25rem / 2);
 }
 
 .true::after {
